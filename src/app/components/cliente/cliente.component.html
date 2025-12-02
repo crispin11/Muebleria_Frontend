@@ -1,0 +1,224 @@
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container-fluid">
+    <h1>
+      <i class="fas fa-users"></i>
+      Gestión de Clientes
+    </h1>
+    <p>Administra la información de tus clientes de manera eficiente</p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <!-- Estadísticas -->
+  <div class="row mb-4">
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card">
+        <div class="position-relative">
+          <h3>{{listCliente.length}}</h3>
+          <p>Total Clientes</p>
+          <i class="fas fa-users stats-icon text-primary"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card success">
+        <div class="position-relative">
+          <h3>{{getClientesActivos()}}</h3>
+          <p>Clientes Activos</p>
+          <i class="fas fa-user-check stats-icon text-success"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card danger">
+        <div class="position-relative">
+          <h3>{{getClientesInactivos()}}</h3>
+          <p>Clientes Inactivos</p>
+          <i class="fas fa-user-times stats-icon text-danger"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="search-box">
+    <div class="row align-items-center">
+      <div class="col-12 text-end">
+        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#clienteModal" (click)="newRol()">
+          <i class="fas fa-user-plus me-2"></i>Nuevo Cliente
+        </button>
+        <button class="btn btn-secondary" (click)="list()">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Clientes -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="clienteTable" class="table table-hover" style="width:100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido Paterno</th>
+              <th>Apellido Materno</th>
+              <th>DNI</th>
+              <th>Teléfono</th>
+              <th>Estado</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listCliente">
+              <td><strong>#{{item.id}}</strong></td>
+              <td>{{item.nombre}}</td>
+              <td>{{item.apellido_pa}}</td>
+              <td>{{item.apellido_ma}}</td>
+              <td><span class="badge bg-secondary">{{item.dni}}</span></td>
+              <td><i class="fas fa-phone me-1"></i>{{item.telefono}}</td>
+              <td>
+                <span [class]="item.estado ? 'badge bg-success' : 'badge bg-danger'">
+                  <i [class]="item.estado ? 'fas fa-check-circle me-1' : 'fas fa-times-circle me-1'"></i>
+                  {{item.estado ? 'Activo' : 'Inactivo'}}
+                </span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button 
+                    type="button" 
+                    class="btn btn-info btn-sm" 
+                    (click)="verDetalles(item)"
+                    title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-warning btn-sm" 
+                    data-bs-toggle="modal" 
+                    data-bs-target="#clienteModal" 
+                    (click)="selectItem(item)"
+                    title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button 
+                    type="button" 
+                    class="btn btn-danger btn-sm" 
+                    (click)="delete(item.id)"
+                    title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Cliente -->
+<div class="modal fade" id="clienteModal" tabindex="-1" aria-labelledby="clienteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="clienteModalLabel">
+          <i [class]="!isUpdate ? 'fas fa-user-plus me-2' : 'fas fa-user-edit me-2'"></i>
+          {{!isUpdate ? 'Nuevo Cliente' : 'Editar Cliente'}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formCliente">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-hashtag me-1"></i>ID
+              </label>
+              <input type="text" class="form-control" formControlName="id" [readonly]="isUpdate">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user me-1"></i>Nombre <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="nombre" placeholder="Ej: Juan">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user-tag me-1"></i>Apellido Paterno <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="apellido_pa" placeholder="Ej: Pérez">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user-tag me-1"></i>Apellido Materno <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="apellido_ma" placeholder="Ej: García">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-id-card me-1"></i>DNI <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="dni" 
+                placeholder="12345678"
+                maxlength="8">
+              <small class="form-text text-muted">Debe tener 8 dígitos</small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-phone me-1"></i>Teléfono <span class="text-danger">*</span>
+              </label>
+              <input 
+                type="text" 
+                class="form-control" 
+                formControlName="telefono" 
+                placeholder="987654321">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">
+              <i class="fas fa-toggle-on me-1"></i>Estado
+            </label>
+            <select class="form-select" formControlName="estado">
+              <option [value]="true">Activo</option>
+              <option [value]="false">Inactivo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times me-2"></i>Cerrar
+        </button>
+        <button 
+          *ngIf="!isUpdate" 
+          type="button" 
+          class="btn btn-success" 
+          (click)="save()">
+          <i class="fas fa-save me-2"></i>Guardar
+        </button>
+        <button 
+          *ngIf="isUpdate" 
+          type="button" 
+          class="btn btn-warning" 
+          (click)="update()">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

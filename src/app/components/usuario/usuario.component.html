@@ -1,0 +1,292 @@
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container-fluid">
+    <h1>
+      <i class="fas fa-user-cog"></i>
+      Gestión de Usuarios
+    </h1>
+    <p>Administra los usuarios y sus roles de manera eficiente</p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <!-- Estadísticas -->
+  <div class="row mb-4">
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card">
+        <div class="position-relative">
+          <h3>{{listUsuario.length}}</h3>
+          <p>Total Usuarios</p>
+          <i class="fas fa-users stats-icon text-primary"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card success">
+        <div class="position-relative">
+          <h3>{{getUsuariosActivos()}}</h3>
+          <p>Usuarios Activos</p>
+          <i class="fas fa-user-check stats-icon text-success"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6">
+      <div class="stats-card danger">
+        <div class="position-relative">
+          <h3>{{getUsuariosInactivos()}}</h3>
+          <p>Usuarios Inactivos</p>
+          <i class="fas fa-user-times stats-icon text-danger"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="search-box">
+    <div class="row align-items-center">
+      <div class="col-12 text-end">
+        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#usuarioModal"
+          (click)="newUsuario()">
+          <i class="fas fa-user-plus me-2"></i>Nuevo Usuario
+        </button>
+        <button class="btn btn-secondary" (click)="list()">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Usuarios -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="usuarioTable" class="table table-hover" style="width:100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido Paterno</th>
+              <th>Apellido Materno</th>
+              <th>Correo</th>
+              <th>Password</th>
+              <th>Rol</th>
+              <th>Estado</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listUsuario">
+              <td><strong>#{{item.id}}</strong></td>
+              <td>{{item.nombre}}</td>
+              <td>{{item.apellido_pa}}</td>
+              <td>{{item.apellido_ma}}</td>
+              <td><i class="fas fa-envelope me-1"></i>{{item.correo}}</td>
+              <td><span class="text-muted">********</span></td>
+              <td><span class="badge bg-info">{{item.role}}</span></td>
+              <td>
+                <span [class]="item.estado ? 'badge bg-success' : 'badge bg-danger'">
+                  <i [class]="item.estado ? 'fas fa-check-circle me-1' : 'fas fa-times-circle me-1'"></i>
+                  {{item.estado ? 'Activo' : 'Inactivo'}}
+                </span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button type="button" class="btn btn-info btn-sm" (click)="verDetalles(item)" title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#usuarioModal" (click)="selectItem(item)" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="delete(item.id)" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Usuario -->
+<div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="usuarioModalLabel">
+          <i [class]="!isUpdate ? 'fas fa-user-plus me-2' : 'fas fa-user-edit me-2'"></i>
+          {{!isUpdate ? 'Nuevo Usuario' : 'Editar Usuario'}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formUsuario">
+          <!-- Información Personal -->
+          <div class="mb-3">
+            <h6 class="text-muted border-bottom pb-2">
+              <i class="fas fa-user-circle me-2"></i>Información Personal
+            </h6>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-hashtag me-1"></i>ID
+              </label>
+              <input type="text" class="form-control" formControlName="id" [readonly]="isUpdate">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user me-1"></i>Nombre <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="nombre" placeholder="Ej: Juan"
+                [class.is-invalid]="formUsuario.get('nombre')?.invalid && formUsuario.get('nombre')?.touched">
+              <div class="invalid-feedback">El nombre es requerido</div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user-tag me-1"></i>Apellido Paterno <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="apellido_pa" placeholder="Ej: Pérez"
+                [class.is-invalid]="formUsuario.get('apellido_pa')?.invalid && formUsuario.get('apellido_pa')?.touched">
+              <div class="invalid-feedback">El apellido paterno es requerido</div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user-tag me-1"></i>Apellido Materno <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="apellido_ma" placeholder="Ej: García"
+                [class.is-invalid]="formUsuario.get('apellido_ma')?.invalid && formUsuario.get('apellido_ma')?.touched">
+              <div class="invalid-feedback">El apellido materno es requerido</div>
+            </div>
+          </div>
+
+          <!-- Credenciales -->
+          <div class="mb-3 mt-4">
+            <h6 class="text-muted border-bottom pb-2">
+              <i class="fas fa-key me-2"></i>Credenciales de Acceso
+            </h6>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-envelope me-1"></i>Correo Electrónico <span class="text-danger">*</span>
+              </label>
+              <input type="email" class="form-control" formControlName="correo" placeholder="usuario@ejemplo.com"
+                [class.is-invalid]="formUsuario.get('correo')?.invalid && formUsuario.get('correo')?.touched">
+              <div class="invalid-feedback">
+                <span *ngIf="formUsuario.get('correo')?.errors?.['required']">El correo es requerido</span>
+                <span *ngIf="formUsuario.get('correo')?.errors?.['email']">Debe ser un correo válido</span>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-lock me-1"></i>Contraseña <span class="text-danger">*</span>
+              </label>
+              <input type="password" class="form-control" formControlName="password" placeholder="Mínimo 8 caracteres"
+                [class.is-invalid]="formUsuario.get('password')?.invalid && formUsuario.get('password')?.touched"
+                [class.is-valid]="formUsuario.get('password')?.valid && formUsuario.get('password')?.touched">
+
+              <!-- Barra de fortaleza de contraseña -->
+              <div class="mt-2" *ngIf="formUsuario.get('password')?.value">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <small class="text-muted">Fortaleza:</small>
+                  <small class="fw-bold" [class]="'text-' + passwordStrength.color">
+                    {{passwordStrength.level}}
+                  </small>
+                </div>
+                <div class="progress" style="height: 8px;">
+                  <div class="progress-bar" [class]="'bg-' + passwordStrength.color" role="progressbar"
+                    [style.width.%]="passwordStrength.percentage" [attr.aria-valuenow]="passwordStrength.percentage"
+                    aria-valuemin="0" aria-valuemax="100">
+                  </div>
+                </div>
+              </div>
+
+              <!-- Mensajes de error -->
+              <div class="invalid-feedback" *ngIf="formUsuario.get('password')?.errors?.['required']">
+                La contraseña es requerida
+              </div>
+              <div class="invalid-feedback" *ngIf="formUsuario.get('password')?.errors?.['minlength']">
+                Mínimo 8 caracteres
+              </div>
+              <div class="invalid-feedback d-block"
+                *ngIf="formUsuario.get('password')?.errors?.['passwordStrength'] && formUsuario.get('password')?.touched">
+                <strong>La contraseña debe contener:</strong>
+                <ul class="mb-0 mt-1 ps-3">
+                  <li *ngFor="let error of getPasswordErrors()">{{error}}</li>
+                </ul>
+              </div>
+
+              <!-- Ayuda -->
+              <small class="form-text text-muted" *ngIf="!formUsuario.get('password')?.touched">
+                <i class="fas fa-info-circle me-1"></i>
+                Debe contener mayúsculas, minúsculas, números y caracteres especiales
+              </small>
+            </div>
+          </div>
+
+          <!-- Rol y Estado -->
+          <div class="mb-3 mt-4">
+            <h6 class="text-muted border-bottom pb-2">
+              <i class="fas fa-cog me-2"></i>Configuración
+            </h6>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-user-shield me-1"></i>Rol <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" formControlName="role"
+                [class.is-invalid]="formUsuario.get('role')?.invalid && formUsuario.get('role')?.touched">
+                <option value="" disabled selected>Seleccione un rol</option>
+                <option *ngFor="let rol of listRoles" [value]="rol.id">
+                  {{rol.nombre}}
+                </option>
+              </select>
+              <div class="invalid-feedback">Debe seleccionar un rol</div>
+              <small class="form-text text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Define los permisos del usuario
+              </small>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-toggle-on me-1"></i>Estado
+              </label>
+              <select class="form-select" formControlName="estado">
+                <option [value]="true">Activo</option>
+                <option [value]="false">Inactivo</option>
+              </select>
+              <small class="form-text text-muted">
+                <i class="fas fa-info-circle me-1"></i>
+                Usuarios inactivos no pueden acceder al sistema
+              </small>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times me-2"></i>Cerrar
+        </button>
+        <button *ngIf="!isUpdate" type="button" class="btn btn-success" (click)="save()"
+          [disabled]="formUsuario.invalid">
+          <i class="fas fa-save me-2"></i>Guardar
+        </button>
+        <button *ngIf="isUpdate" type="button" class="btn btn-warning" (click)="update()"
+          [disabled]="formUsuario.invalid">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

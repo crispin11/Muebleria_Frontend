@@ -1,0 +1,232 @@
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container-fluid">
+    <h1>
+      <i class="fas fa-boxes"></i>
+      Gestión de Productos
+    </h1>
+    <p>Administra y controla tu inventario de productos de manera eficiente</p>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <!-- Estadísticas -->
+  <div class="row mb-4">
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card">
+        <div class="position-relative">
+          <h3>{{listProducto.length}}</h3>
+          <p>Total Productos</p>
+          <i class="fas fa-boxes stats-icon text-primary"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card success">
+        <div class="position-relative">
+          <h3>{{getProductosActivos()}}</h3>
+          <p>Productos Activos</p>
+          <i class="fas fa-check-circle stats-icon text-success"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card warning">
+        <div class="position-relative">
+          <h3>{{getStockBajo()}}</h3>
+          <p>Stock Bajo</p>
+          <i class="fas fa-exclamation-triangle stats-icon text-warning"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-md-6">
+      <div class="stats-card danger">
+        <div class="position-relative">
+          <h3>{{getProductosInactivos()}}</h3>
+          <p>Inactivos</p>
+          <i class="fas fa-times-circle stats-icon text-danger"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Botones de Acción -->
+  <div class="search-box">
+    <div class="row align-items-center">
+      <div class="col-12 text-end">
+        <button class="btn btn-success me-2" data-bs-toggle="modal" data-bs-target="#productoModal" (click)="newRol()">
+          <i class="fas fa-plus me-2"></i>Nuevo Producto
+        </button>
+        <button class="btn btn-secondary me-2" (click)="list()">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+        <button class="btn btn-info" (click)="exportarExcel()">
+          <i class="fas fa-file-excel me-2"></i>Exportar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabla de Productos -->
+  <div class="card">
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="productosTable" class="table table-hover" style="width:100%">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Tipo</th>
+              <th>Material</th>
+              <th>Cantidad</th>
+              <th>Precio</th>
+              <th>Medidas</th>
+              <th>Descripción</th>
+              <th>Estado</th>
+              <th class="text-center">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listProducto">
+              <td><strong>#{{item.id}}</strong></td>
+              <td>{{item.nombre}}</td>
+              <td>{{item.tipoProducto}}</td>
+              <td>{{item.material}}</td>
+              <td>
+                <span [class]="item.cantidad < 10 ? 'badge bg-warning text-dark' : 'badge bg-info'">
+                  {{item.cantidad}}
+                </span>
+              </td>
+              <td><strong>S/. {{item.precio | number:'1.2-2'}}</strong></td>
+              <td>{{item.medidas}}</td>
+              <td>{{item.descripcion}}</td>
+              <td>
+                <span [class]="item.estado ? 'badge bg-success' : 'badge bg-danger'">
+                  <i [class]="item.estado ? 'fas fa-check-circle me-1' : 'fas fa-times-circle me-1'"></i>
+                  {{item.estado ? 'Activo' : 'Inactivo'}}
+                </span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                    data-bs-target="#productoModal" (click)="selectItem(item)" title="Editar">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button type="button" class="btn btn-danger btn-sm" (click)="delete(item.id)" title="Eliminar">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                  <button type="button" class="btn btn-info btn-sm" (click)="verDetalles(item)" title="Ver detalles">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Producto -->
+<div class="modal fade" id="productoModal" tabindex="-1" aria-labelledby="productoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="productoModalLabel">
+          <i [class]="!isUpdate ? 'fas fa-plus-circle me-2' : 'fas fa-edit me-2'"></i>
+          {{!isUpdate ? 'Nuevo Producto' : 'Editar Producto'}}
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="formProducto">
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-hashtag me-1"></i>ID
+              </label>
+              <input type="text" class="form-control" formControlName="id" [readonly]="isUpdate">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-box me-1"></i>Nombre <span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control" formControlName="nombre" placeholder="Ej: Mesa Comedor">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-tag me-1"></i>Tipo Producto <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" formControlName="tipoProductoId">
+                <option [value]="null" disabled>Seleccione un tipo</option>
+                <option *ngFor="let tipo of listTipoProducto" [value]="tipo.id">
+                  {{tipo.nombre}}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">
+                <i class="fas fa-tree me-1"></i>Material <span class="text-danger">*</span>
+              </label>
+              <select class="form-select" formControlName="materialId">
+                <option [value]="null" disabled>Seleccione un material</option>
+                <option *ngFor="let mat of listMaterial" [value]="mat.id">
+                  {{mat.nombre}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="row">
+
+            <div class="col-md-4 mb-3">
+              <label class="form-label">
+                <i class="fas fa-dollar-sign me-1"></i>Precio <span class="text-danger">*</span>
+              </label>
+              <input type="number" class="form-control" formControlName="precio" placeholder="0.00" step="0.01">
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label">
+                <i class="fas fa-ruler-combined me-1"></i>Medidas
+              </label>
+              <input type="text" class="form-control" formControlName="medidas" placeholder="Ej: 150x80x75 cm">
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">
+              <i class="fas fa-align-left me-1"></i>Descripción
+            </label>
+            <textarea class="form-control" formControlName="descripcion" rows="3"
+              placeholder="Descripción del producto..."></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">
+              <i class="fas fa-toggle-on me-1"></i>Estado
+            </label>
+            <select class="form-select" formControlName="estado">
+              <option [value]="true">Activo</option>
+              <option [value]="false">Inactivo</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+          <i class="fas fa-times me-2"></i>Cerrar
+        </button>
+        <button *ngIf="!isUpdate" type="button" class="btn btn-success" (click)="save()">
+          <i class="fas fa-save me-2"></i>Guardar
+        </button>
+        <button *ngIf="isUpdate" type="button" class="btn btn-warning" (click)="update()">
+          <i class="fas fa-sync-alt me-2"></i>Actualizar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,174 @@
+
+<!-- Topbar (móvil) -->
+<div class="topbar">
+  <button class="hamburger" (click)="toggleSidebar()">
+    <i class="fas fa-bars"></i>
+  </button>
+  <div class="topbar-title">Sistema de Gestión</div>
+</div>
+
+<!-- Overlay -->
+<div class="overlay" [class.active]="sidebarActive" (click)="toggleSidebar()"></div>
+
+<!-- Sidebar -->
+<nav class="sidebar" [class.active]="sidebarActive">
+  <div class="sidebar-header">
+    <h3><i class="fas fa-store"></i> Mi Sistema</h3>
+  </div>
+
+  <ul class="sidebar-menu">
+    <!-- Dashboard -->
+    <li class="menu-item">
+      <a class="menu-link" [routerLink]="['/dashboard']" routerLinkActive="active">
+        <i class="fas fa-home"></i>
+        <span>Inicio</span>
+      </a>
+    </li>
+
+    <!-- Producto -->
+    <li class="menu-item">
+      <a class="menu-link" (click)="toggleSubmenu('producto')">
+        <i class="fas fa-box"></i>
+        <span>Producto</span>
+        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['producto']"></i>
+      </a>
+      <ul class="submenu" [class.show]="activeMenus['producto']">
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/Producto']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Producto
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/tipo-producto']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Tipo Producto
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/material']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Material
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Usuario -->
+    <li class="menu-item">
+      <a class="menu-link" (click)="toggleSubmenu('usuario')">
+        <i class="fas fa-users"></i>
+        <span>Usuario</span>
+        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['usuario']"></i>
+      </a>
+      <ul class="submenu" [class.show]="activeMenus['usuario']">
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/usuario']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Usuario
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/roles']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Roles
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Venta -->
+    <li class="menu-item">
+      <a class="menu-link" (click)="toggleSubmenu('venta')">
+        <i class="fas fa-shopping-cart"></i>
+        <span>Venta</span>
+        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['venta']"></i>
+      </a>
+      <ul class="submenu" [class.show]="activeMenus['venta']">
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/venta']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Venta
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/detalle-venta']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Detalle Ventas
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/cliente']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Cliente
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/metodo-pago']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Método Pago
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Compra -->
+    <li class="menu-item">
+      <a class="menu-link" (click)="toggleSubmenu('compra')">
+        <i class="fas fa-truck"></i>
+        <span>Compra</span>
+        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['compra']"></i>
+      </a>
+      <ul class="submenu" [class.show]="activeMenus['compra']">
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/compra']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Compra
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/detalle-compra']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Detalle Compras
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/proveedor']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Proveedor
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <!-- Administración -->
+    <li class="menu-item">
+      <a class="menu-link" (click)="toggleSubmenu('admin')">
+        <i class="fas fa-cog"></i>
+        <span>Administración</span>
+        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['admin']"></i>
+      </a>
+      <ul class="submenu" [class.show]="activeMenus['admin']">
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/Kardex']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Kardex
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a class="submenu-link" [routerLink]="['/dashboard']" (click)="closeSidebarOnMobile()">
+            <i class="fas fa-circle"></i>
+            Dashboard
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+<!-- Main Content -->
+<div class="main-content">
+  <div class="content-wrapper">
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<div class="login-container">
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Iniciar Sesión</h3>
+            
+            <!-- Mensaje de error -->
+            <div *ngIf="errorMessage" class="alert alert-danger alert-dismissible fade show" role="alert">
+              <i class="fas fa-exclamation-circle me-2"></i>{{ errorMessage }}
+              <button type="button" class="btn-close" (click)="errorMessage = ''" aria-label="Close"></button>
+            </div>
+            
+            <form #loginForm="ngForm">
+              <!-- Correo -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input 
+                  [(ngModel)]="correo" 
+                  type="email" 
+                  class="form-control" 
+                  id="email" 
+                  name="email" 
+                  placeholder="Ingresa tu correo" 
+                  [disabled]="loading"
+                  required>
+              </div>
+              
+              <!-- Contraseña -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input 
+                  [(ngModel)]="password" 
+                  type="password" 
+                  class="form-control" 
+                  id="password" 
+                  name="password" 
+                  placeholder="Ingresa tu contraseña"
+                  [disabled]="loading"
+                  required>
+              </div>
+              
+              <!-- Botón de Login -->
+              <button 
+                type="button" 
+                class="btn btn-primary w-100" 
+                (click)="login()"
+                [disabled]="loading">
+                <span *ngIf="!loading">Iniciar Sesión</span>
+                <span *ngIf="loading">
+                  <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                  Iniciando...
+                </span>
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

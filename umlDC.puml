@@ -1,0 +1,461 @@
+
+
+
+
+class AppComponent{
+            +title: string
++isAuthenticated: boolean
+-authSubscription: Subscription
+-loginService: LoginService
+            +ngOnInit() void
++ngOnDestroy() void
+        }
+OnInit<|..AppComponent
+OnDestroy<|..AppComponent
+class ClienteModel{
+            +id: number
++nombre: string
++apellido_pa: string
++apellido_ma: string
++dni: string
++telefono: string
++estado: boolean
+            
+        }
+class CompraModel{
+            +id: number
++proveedor: number
++fecha: string
++total: number
++estado: boolean
+            
+        }
+class ResumenModel{
+            +totalClientes: number
++totalVentas: number
++totalProductos: number
++totalCompras: number
+            
+        }
+class DetallecompraModel{
+            +id: number
++compra: number
++producto: number
++cantidad: number
++precioCompra: number
++subtotal: number
++estado: boolean
+            
+        }
+class DetalleVentaModel{
+            +id: number
++venta: number
++producto: number
++cantidad: number
++precioUnitario: number
++subtotal: number
++estado: boolean
+            
+        }
+class KardexModel{
+            +fecha: string
++producto: string
++detalle: string
++entradas: number
++salidas: number
++stock: number
+            
+        }
+class MaterialModel{
+            +id: number
++nombre: string
++estado: boolean
+            
+        }
+class MetodoPagoModel{
+            +id: number
++nombre: string
++estado: boolean
+            
+        }
+class ProductoModel{
+            +id: number
++nombre: string
++tipoProducto: number
++material: number
++cantidad: number
++precio: number
++medidas: string
++descripcion: string
++estado: boolean
+            
+        }
+class ProveedorModel{
+            +id: number
++razon_social: string
++ruc: string
++direccion: string
++telefono: string
++estado: boolean
+            
+        }
+class RoleModel{
+            +id: number
++nombre: string
++estado: boolean
+            
+        }
+class tipoproductoModel{
+            +id: number
++nombre: string
++estado: boolean
+            
+        }
+class UsuarioModel{
+            +id: number
++nombre: string
++apellido_pa: string
++apellido_ma: string
++correo: string
++password: string
++role: number
++estado: boolean
+            
+        }
+class VentaModel{
+            +id: number
++cliente: number
++usuario: number
++metodoPago: number
++fecha: string
++total: number
++estado: boolean
+            
+        }
+class ClienteComponent{
+            +listCliente: ClienteModel[]
++formCliente: FormGroup~any~
++isUpdate: boolean
++cliente: ClienteModel
++clienteId: number
+-clienteservice: ClienteService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..ClienteComponent
+class CompraComponent{
+            +listCompra: CompraModel[]
++formCompra: FormGroup~any~
++isUpdate: boolean
++compraId: number
+-servi: CompraService
+            +ngOnInit() void
++list() void
++save() void
++buscarUsuarioPorId() void
+        }
+OnInit<|..CompraComponent
+class DashboardComponent{
+            +list: ResumenModel[]
+-servi: DashboardService
+            +ngOnInit() void
++getResumen() void
+        }
+OnInit<|..DashboardComponent
+class DetalleCompraComponent{
+            +listDetallec: DetallecompraModel[]
++formDetallec: FormGroup~any~
++isUpdate: boolean
++Detalle: DetallecompraModel
++DetalleId: number
+-servi: DetalleCompraService
+            +ngOnInit() void
++list() void
++save() void
++buscarUsuarioPorId() void
+        }
+OnInit<|..DetalleCompraComponent
+class DetalleVentaComponent{
+            +listDetallev: DetalleVentaModel[]
++formDetallev: FormGroup~any~
++isUpdate: boolean
++Detalle: DetalleVentaModel
++DetalleId: number
+-servi: DetalleVentaService
+            +ngOnInit() void
++list() void
++save() void
++buscarUsuarioPorId() void
+        }
+OnInit<|..DetalleVentaComponent
+class KardexComponent{
+            +listkardex: KardexModel[]
+-servi: KardexService
+            +ngOnInit() void
++list() void
+        }
+OnInit<|..KardexComponent
+class LoginComponent{
+            +correo: string
++password: string
+-loginService: LoginService
+-router: Router
+            +login() void
+        }
+class MaterialComponent{
+            +listMaterial: MaterialModel[]
++formMaterial: FormGroup~any~
++isUpdate: boolean
++material: MaterialModel
++materialId: number
+-materialservice: MaterialService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..MaterialComponent
+class MenuComponent{
+            
+            
+        }
+class MetodoPagoComponent{
+            +listMetodop: MetodoPagoModel[]
++formMetodo: FormGroup~any~
++isUpdate: boolean
++role: MetodoPagoModel
++metodoId: number
+-metodoservice: MetodoPagoService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..MetodoPagoComponent
+class ProductoComponent{
+            +listProducto: ProductoModel[]
++formProducto: FormGroup~any~
++isUpdate: boolean
++producto: ProductoModel
++proId: number
+-productoservice: ProductoService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..ProductoComponent
+class ProveedorComponent{
+            +listProveedor: ProveedorModel[]
++formProveedor: FormGroup~any~
++isUpdate: boolean
++proveedor: ProveedorModel
++proId: number
+-proveedorservi: ProveedorService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..ProveedorComponent
+class RoleComponent{
+            +listRole: RoleModel[]
++formRole: FormGroup~any~
++isUpdate: boolean
++role: RoleModel
++roleId: number
+-roleservice: RoleService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..RoleComponent
+class TipoProductoComponent{
+            +listTipo: tipoproductoModel[]
++formTipo: FormGroup~any~
++isUpdate: boolean
++tipo: tipoproductoModel
++tipoId: number
+-tipopservice: TipoProductoService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newRol() void
++selectItem() void
++buscarRolePorId() void
+        }
+OnInit<|..TipoProductoComponent
+class UsuarioComponent{
+            +listUsuario: UsuarioModel[]
++formUsuario: FormGroup~any~
++isUpdate: boolean
++usuario: UsuarioModel
++usuarioId: number
+-usuarioservice: UsuarioService
+            +ngOnInit() void
++list() void
++save() void
++update() void
++delete() void
++newUsuario() void
++selectItem() void
++buscarUsuarioPorId() void
+        }
+OnInit<|..UsuarioComponent
+class VentaComponent{
+            +listVenta: VentaModel[]
++formVenta: FormGroup~any~
++isUpdate: boolean
++Venta: VentaModel
++ventaId: number
+-servi: VentaService
+            +ngOnInit() void
++list() void
++save() void
++buscarUsuarioPorId() void
+        }
+OnInit<|..VentaComponent
+class ClienteService{
+            -httpClient: HttpClient
+            +getAll() Observable~ClienteModel[]~
++getById() Observable~ClienteModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class CompraService{
+            -httpClient: HttpClient
+            +getUsuario() Observable~CompraModel[]~
++getUsuarioById() Observable~CompraModel~
++saveUsuario() Observable~any~
+        }
+class DashboardService{
+            -httpClient: HttpClient
+            +getResumen() Observable~ResumenModel[]~
+        }
+class DetalleCompraService{
+            -httpClient: HttpClient
+            +get() Observable~DetallecompraModel[]~
++getById() Observable~DetallecompraModel~
++save() Observable~any~
+        }
+class DetalleVentaService{
+            -httpClient: HttpClient
+            +get() Observable~DetalleVentaModel[]~
++getById() Observable~DetalleVentaModel~
++save() Observable~any~
+        }
+class KardexService{
+            -httpClient: HttpClient
+            +getAll() Observable~KardexModel[]~
+        }
+class LoginService{
+            -API_URL: string
+-tokenKey: string
+-isAuthenticatedSubject: BehaviorSubject~boolean~
++isAuthenticated$: Observable~boolean~
+-httpClient: HttpClient
+-router: Router
+-platformId: Object
+            -checkAuthStatus() void
++login() Observable~any~
++setToken() void
++getToken() string
++isAuthenticated() boolean
+-clearToken() void
++logout() void
++clearStoredToken() void
++hasToken() boolean
++getUserInfo() any
+        }
+class MaterialService{
+            -httpClient: HttpClient
+            +getAll() Observable~MaterialModel[]~
++getById() Observable~MaterialModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class MetodoPagoService{
+            -httpClient: HttpClient
+            +getAll() Observable~MetodoPagoModel[]~
++getById() Observable~MetodoPagoModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class ProductoService{
+            -httpClient: HttpClient
+            +getAll() Observable~ProductoModel[]~
++getById() Observable~ProductoModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class ProveedorService{
+            -httpClient: HttpClient
+            +getAll() Observable~ProveedorModel[]~
++getById() Observable~ProveedorModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class RoleService{
+            -httpClient: HttpClient
+            +getUsuario() Observable~RoleModel[]~
++getRoleById() Observable~RoleModel~
++saveUsuario() Observable~any~
++updateUsuario() Observable~any~
++deleteUsuario() Observable~any~
+        }
+class TipoProductoService{
+            -httpClient: HttpClient
+            +getAll() Observable~tipoproductoModel[]~
++getById() Observable~tipoproductoModel~
++save() Observable~any~
++update() Observable~any~
++delete() Observable~any~
+        }
+class UsuarioService{
+            -httpClient: HttpClient
+            +getUsuario() Observable~UsuarioModel[]~
++getUsuarioById() Observable~UsuarioModel~
++saveUsuario() Observable~any~
++updateUsuario() Observable~any~
++deleteUsuario() Observable~any~
+        }
+class VentaService{
+            -httpClient: HttpClient
+            +getUsuario() Observable~VentaModel[]~
++getUsuarioById() Observable~VentaModel~
++saveUsuario() Observable~any~
+        }

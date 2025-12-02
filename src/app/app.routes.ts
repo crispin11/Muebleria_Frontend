@@ -1,0 +1,34 @@
+import { Routes } from '@angular/router';
+import { ProductoComponent } from './components/producto/producto.component';
+import { TipoProductoComponent } from './components/tipo-producto/tipo-producto.component';
+import { MaterialComponent } from './components/material/material.component';
+import { UsuarioComponent } from './components/usuario/usuario.component';
+import { RoleComponent } from './components/role/role.component';
+import { VentaComponent } from './components/venta/venta.component';
+import { DetalleVentaComponent } from './components/detalle-venta/detalle-venta.component';
+import { ClienteComponent } from './components/cliente/cliente.component';
+import { MetodoPagoComponent } from './components/metodo-pago/metodo-pago.component';
+import { CompraComponent } from './components/compra/compra.component';
+import { DetalleCompraComponent } from './components/detalle-compra/detalle-compra.component';
+import { ProveedorComponent } from './components/proveedor/proveedor.component';
+import { KardexComponent } from './components/kardex/kardex.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+
+export const routes: Routes = [
+  { path: 'dashboard', component: DashboardComponent },
+  { path: 'Producto', component: ProductoComponent },
+  { path: 'tipo-producto', component: TipoProductoComponent },
+  { path: 'material', component: MaterialComponent },
+  { path: 'usuario', component: UsuarioComponent },
+  { path: 'roles', component: RoleComponent },
+  { path: 'venta', component: VentaComponent },
+  { path: 'detalle-venta', component: DetalleVentaComponent },
+  { path: 'cliente', component: ClienteComponent },
+  { path: 'metodo-pago', component: MetodoPagoComponent },
+  { path: 'compra', component: CompraComponent },
+  { path: 'detalle-compra', component: DetalleCompraComponent },
+  { path: 'proveedor', component: ProveedorComponent },
+  { path: 'Kardex', component: KardexComponent },
+  { path: 'login', component: LoginComponent },
+];

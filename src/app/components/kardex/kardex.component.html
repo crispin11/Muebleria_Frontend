@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+<nav class="navbar" style="background-color: #2e4156;">
+    <div class="container-fluid">
+      <div class="col-md-4 ">
+        <h1 style="color: white;">Kardex</h1>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="col-md-12 p-2">
+    <table class="table mt-2 table-bordered">
+      <thead class="table-primary">
+        <tr>
+          <th>Fecha</th>
+          <th>Producto</th>
+          <th>Detalle</th>
+          <th>Entradas</th>
+          <th>Salidas</th>
+          <th>Stock</th>
+      
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of listkardex">
+          <td>{{item.fecha}}</td>
+          <td>{{item.producto}}</td>
+          <td>{{item.detalle}}</td>
+          <td>{{item.entradas}}</td>
+          <td>{{item.salidas}}</td>
+          <td>{{item.stock}}</td>
+        
+        </tr>
+      </tbody>
+    </table>
+  </div>

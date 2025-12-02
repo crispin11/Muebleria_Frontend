@@ -1,0 +1,1556 @@
+<svg version="1.1" baseProfile="full" width="10927.0" height="726.0" viewBox="0 0 10927 726" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
+<desc >#.interface: fill=lightblue
+#.enumeration: fill=lightgreen
+#.type: fill=lightgray
+
+[AppComponent|+title: string;+isAuthenticated: boolean;-authSubscription: Subscription;-loginService: LoginService|+ngOnInit(): void;+ngOnDestroy(): void]
+[OnInit]&lt;:--[AppComponent]
+[OnDestroy]&lt;:--[AppComponent]
+[ClienteModel|+id: number;+nombre: string;+apellido_pa: string;+apellido_ma: string;+dni: string;+telefono: string;+estado: boolean|]
+[CompraModel|+id: number;+proveedor: number;+fecha: string;+total: number;+estado: boolean|]
+[ResumenModel|+totalClientes: number;+totalVentas: number;+totalProductos: number;+totalCompras: number|]
+[DetallecompraModel|+id: number;+compra: number;+producto: number;+cantidad: number;+precioCompra: number;+subtotal: number;+estado: boolean|]
+[DetalleVentaModel|+id: number;+venta: number;+producto: number;+cantidad: number;+precioUnitario: number;+subtotal: number;+estado: boolean|]
+[KardexModel|+fecha: string;+producto: string;+detalle: string;+entradas: number;+salidas: number;+stock: number|]
+[MaterialModel|+id: number;+nombre: string;+estado: boolean|]
+[MetodoPagoModel|+id: number;+nombre: string;+estado: boolean|]
+[ProductoModel|+id: number;+nombre: string;+tipoProducto: number;+material: number;+cantidad: number;+precio: number;+medidas: string;+descripcion: string;+estado: boolean|]
+[ProveedorModel|+id: number;+razon_social: string;+ruc: string;+direccion: string;+telefono: string;+estado: boolean|]
+[RoleModel|+id: number;+nombre: string;+estado: boolean|]
+[tipoproductoModel|+id: number;+nombre: string;+estado: boolean|]
+[UsuarioModel|+id: number;+nombre: string;+apellido_pa: string;+apellido_ma: string;+correo: string;+password: string;+role: number;+estado: boolean|]
+[VentaModel|+id: number;+cliente: number;+usuario: number;+metodoPago: number;+fecha: string;+total: number;+estado: boolean|]
+[ClienteComponent|+listCliente: ClienteModel\[\];+formCliente: FormGroup&lt;any&gt;;+isUpdate: boolean;+cliente: ClienteModel;+clienteId: number;-clienteservice: ClienteService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[ClienteComponent]
+[CompraComponent|+listCompra: CompraModel\[\];+formCompra: FormGroup&lt;any&gt;;+isUpdate: boolean;+compraId: number;-servi: CompraService|+ngOnInit(): void;+list(): void;+save(): void;+buscarUsuarioPorId(): void]
+[OnInit]&lt;:--[CompraComponent]
+[DashboardComponent|+list: ResumenModel\[\];-servi: DashboardService|+ngOnInit(): void;+getResumen(): void]
+[OnInit]&lt;:--[DashboardComponent]
+[DetalleCompraComponent|+listDetallec: DetallecompraModel\[\];+formDetallec: FormGroup&lt;any&gt;;+isUpdate: boolean;+Detalle: DetallecompraModel;+DetalleId: number;-servi: DetalleCompraService|+ngOnInit(): void;+list(): void;+save(): void;+buscarUsuarioPorId(): void]
+[OnInit]&lt;:--[DetalleCompraComponent]
+[DetalleVentaComponent|+listDetallev: DetalleVentaModel\[\];+formDetallev: FormGroup&lt;any&gt;;+isUpdate: boolean;+Detalle: DetalleVentaModel;+DetalleId: number;-servi: DetalleVentaService|+ngOnInit(): void;+list(): void;+save(): void;+buscarUsuarioPorId(): void]
+[OnInit]&lt;:--[DetalleVentaComponent]
+[KardexComponent|+listkardex: KardexModel\[\];-servi: KardexService|+ngOnInit(): void;+list(): void]
+[OnInit]&lt;:--[KardexComponent]
+[LoginComponent|+correo: string;+password: string;-loginService: LoginService;-router: Router|+login(): void]
+[MaterialComponent|+listMaterial: MaterialModel\[\];+formMaterial: FormGroup&lt;any&gt;;+isUpdate: boolean;+material: MaterialModel;+materialId: number;-materialservice: MaterialService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[MaterialComponent]
+[MenuComponent||]
+[MetodoPagoComponent|+listMetodop: MetodoPagoModel\[\];+formMetodo: FormGroup&lt;any&gt;;+isUpdate: boolean;+role: MetodoPagoModel;+metodoId: number;-metodoservice: MetodoPagoService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[MetodoPagoComponent]
+[ProductoComponent|+listProducto: ProductoModel\[\];+formProducto: FormGroup&lt;any&gt;;+isUpdate: boolean;+producto: ProductoModel;+proId: number;-productoservice: ProductoService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[ProductoComponent]
+[ProveedorComponent|+listProveedor: ProveedorModel\[\];+formProveedor: FormGroup&lt;any&gt;;+isUpdate: boolean;+proveedor: ProveedorModel;+proId: number;-proveedorservi: ProveedorService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[ProveedorComponent]
+[RoleComponent|+listRole: RoleModel\[\];+formRole: FormGroup&lt;any&gt;;+isUpdate: boolean;+role: RoleModel;+roleId: number;-roleservice: RoleService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[RoleComponent]
+[TipoProductoComponent|+listTipo: tipoproductoModel\[\];+formTipo: FormGroup&lt;any&gt;;+isUpdate: boolean;+tipo: tipoproductoModel;+tipoId: number;-tipopservice: TipoProductoService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newRol(): void;+selectItem(): void;+buscarRolePorId(): void]
+[OnInit]&lt;:--[TipoProductoComponent]
+[UsuarioComponent|+listUsuario: UsuarioModel\[\];+formUsuario: FormGroup&lt;any&gt;;+isUpdate: boolean;+usuario: UsuarioModel;+usuarioId: number;-usuarioservice: UsuarioService|+ngOnInit(): void;+list(): void;+save(): void;+update(): void;+delete(): void;+newUsuario(): void;+selectItem(): void;+buscarUsuarioPorId(): void]
+[OnInit]&lt;:--[UsuarioComponent]
+[VentaComponent|+listVenta: VentaModel\[\];+formVenta: FormGroup&lt;any&gt;;+isUpdate: boolean;+Venta: VentaModel;+ventaId: number;-servi: VentaService|+ngOnInit(): void;+list(): void;+save(): void;+buscarUsuarioPorId(): void]
+[OnInit]&lt;:--[VentaComponent]
+[ClienteService|-httpClient: HttpClient|+getAll(): Observable&lt;ClienteModel\[\]&gt;;+getById(): Observable&lt;ClienteModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[CompraService|-httpClient: HttpClient|+getUsuario(): Observable&lt;CompraModel\[\]&gt;;+getUsuarioById(): Observable&lt;CompraModel&gt;;+saveUsuario(): Observable&lt;any&gt;]
+[DashboardService|-httpClient: HttpClient|+getResumen(): Observable&lt;ResumenModel\[\]&gt;]
+[DetalleCompraService|-httpClient: HttpClient|+get(): Observable&lt;DetallecompraModel\[\]&gt;;+getById(): Observable&lt;DetallecompraModel&gt;;+save(): Observable&lt;any&gt;]
+[DetalleVentaService|-httpClient: HttpClient|+get(): Observable&lt;DetalleVentaModel\[\]&gt;;+getById(): Observable&lt;DetalleVentaModel&gt;;+save(): Observable&lt;any&gt;]
+[KardexService|-httpClient: HttpClient|+getAll(): Observable&lt;KardexModel\[\]&gt;]
+[LoginService|-API_URL: string;-tokenKey: string;-isAuthenticatedSubject: BehaviorSubject&lt;boolean&gt;;+isAuthenticated$: Observable&lt;boolean&gt;;-httpClient: HttpClient;-router: Router;-platformId: Object|-checkAuthStatus(): void;+login(): Observable&lt;any&gt;;+setToken(): void;+getToken(): string;+isAuthenticated(): boolean;-clearToken(): void;+logout(): void;+clearStoredToken(): void;+hasToken(): boolean;+getUserInfo(): any]
+[MaterialService|-httpClient: HttpClient|+getAll(): Observable&lt;MaterialModel\[\]&gt;;+getById(): Observable&lt;MaterialModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[MetodoPagoService|-httpClient: HttpClient|+getAll(): Observable&lt;MetodoPagoModel\[\]&gt;;+getById(): Observable&lt;MetodoPagoModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[ProductoService|-httpClient: HttpClient|+getAll(): Observable&lt;ProductoModel\[\]&gt;;+getById(): Observable&lt;ProductoModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[ProveedorService|-httpClient: HttpClient|+getAll(): Observable&lt;ProveedorModel\[\]&gt;;+getById(): Observable&lt;ProveedorModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[RoleService|-httpClient: HttpClient|+getUsuario(): Observable&lt;RoleModel\[\]&gt;;+getRoleById(): Observable&lt;RoleModel&gt;;+saveUsuario(): Observable&lt;any&gt;;+updateUsuario(): Observable&lt;any&gt;;+deleteUsuario(): Observable&lt;any&gt;]
+[TipoProductoService|-httpClient: HttpClient|+getAll(): Observable&lt;tipoproductoModel\[\]&gt;;+getById(): Observable&lt;tipoproductoModel&gt;;+save(): Observable&lt;any&gt;;+update(): Observable&lt;any&gt;;+delete(): Observable&lt;any&gt;]
+[UsuarioService|-httpClient: HttpClient|+getUsuario(): Observable&lt;UsuarioModel\[\]&gt;;+getUsuarioById(): Observable&lt;UsuarioModel&gt;;+saveUsuario(): Observable&lt;any&gt;;+updateUsuario(): Observable&lt;any&gt;;+deleteUsuario(): Observable&lt;any&gt;]
+[VentaService|-httpClient: HttpClient|+getUsuario(): Observable&lt;VentaModel\[\]&gt;;+getUsuarioById(): Observable&lt;VentaModel&gt;;+saveUsuario(): Observable&lt;any&gt;]</desc>
+<g stroke-width="1.0" text-align="left" font="12pt Helvetica, Arial, sans-serif" font-size="12pt" font-family="Helvetica" font-weight="normal" font-style="normal">
+<g font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" stroke-width="3.0" stroke-linejoin="round" stroke-linecap="round" stroke="#33322E">
+<g stroke="transparent" fill="transparent">
+<rect x="0.0" y="0.0" height="726.0" width="10927.0" stroke="none"></rect>
+</g>
+<g transform="translate(8, 8)" fill="#33322E">
+<g transform="translate(20, 20)" fill="#eee8d5" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal">
+<g stroke-dasharray="6 6">
+<path d="M1197.9 177.6 L192.25 359 L161.04909365558913 444 L161.0 444.0 " fill="none"></path>
+</g>
+<path d="M1198.8 182.8 L1197.9 177.6 L1196.9 172.3 L1211.0 175.2 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M111.5 198.8 L111.5 359 L121.77190332326285 444 L121.8 444.0 " fill="none"></path>
+</g>
+<path d="M116.8 198.8 L111.5 198.8 L106.2 198.8 L111.5 185.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1198.0 179.9 L435 359 L435 379 L435.0 379.0 " fill="none"></path>
+</g>
+<path d="M1199.2 185.1 L1198.0 179.9 L1196.8 174.7 L1211.0 176.9 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1198.5 186.2 L742.5 359 L742.5 419.5 L742.5 419.5 " fill="none"></path>
+</g>
+<path d="M1200.4 191.2 L1198.5 186.2 L1196.6 181.2 L1211.0 181.4 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1214.2 194.3 L1026 359 L1026 460.5 L1026.0 460.5 " fill="none"></path>
+</g>
+<path d="M1217.7 198.3 L1214.2 194.3 L1210.7 190.3 L1224.2 185.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1254.2 197.8 L1321 359 L1321 411.5 L1321.0 411.5 " fill="none"></path>
+</g>
+<path d="M1259.2 195.8 L1254.2 197.8 L1249.3 199.9 L1249.1 185.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1286.1 189.8 L1648.5 359 L1648.5 411.5 L1648.5 411.5 " fill="none"></path>
+</g>
+<path d="M1288.3 185.0 L1286.1 189.8 L1283.8 194.7 L1274.0 184.2 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1286.9 181.5 L1942 359 L1942 460.5 L1942.0 460.5 " fill="none"></path>
+</g>
+<path d="M1288.3 176.4 L1286.9 181.5 L1285.5 186.7 L1274.0 178.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.1 178.0 L2232 359 L2232 379 L2232.0 379.0 " fill="none"></path>
+</g>
+<path d="M1288.1 172.8 L1287.1 178.0 L1286.1 183.3 L1274.0 175.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.2 175.9 L2562.5 359 L2562.5 379 L2562.5 379.0 " fill="none"></path>
+</g>
+<path d="M1288.0 170.6 L1287.2 175.9 L1286.4 181.2 L1274.0 174.0 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.2 174.6 L2900.5 359 L2900.5 379 L2900.5 379.0 " fill="none"></path>
+</g>
+<path d="M1287.9 169.3 L1287.2 174.6 L1286.6 179.9 L1274.0 173.1 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.3 173.8 L3231 359 L3231 379 L3231.0 379.0 " fill="none"></path>
+</g>
+<path d="M1287.8 168.5 L1287.3 173.8 L1286.8 179.1 L1274.0 172.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.3 173.2 L3539.5 359 L3539.5 379 L3539.5 379.0 " fill="none"></path>
+</g>
+<path d="M1287.7 167.9 L1287.3 173.2 L1286.8 178.5 L1274.0 172.1 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.3 172.8 L3848 359 L3848 379 L3848.0 379.0 " fill="none"></path>
+</g>
+<path d="M1287.7 167.4 L1287.3 172.8 L1286.9 178.1 L1274.0 171.8 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.3 172.4 L4169 359 L4169 379 L4169.0 379.0 " fill="none"></path>
+</g>
+<path d="M1287.7 167.1 L1287.3 172.4 L1287.0 177.7 L1274.0 171.5 Z"></path>
+<g stroke-dasharray="6 6">
+<path d="M1287.3 172.1 L4471.5 359 L4471.5 411.5 L4471.5 411.5 " fill="none"></path>
+</g>
+<path d="M1287.6 166.8 L1287.3 172.1 L1287.0 177.5 L1274.0 171.3 Z"></path>
+<g data-name="AppComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="AppComponent">
+<rect x="0.0" y="444.0" height="161.0" width="263.0" data-name="AppComponent"></rect>
+<path d="M0.0 476.0 L263.0 476.0" fill="none" data-name="AppComponent"></path>
+<path d="M0.0 557.0 L263.0 557.0" fill="none" data-name="AppComponent"></path>
+</g>
+<g transform="translate(0, 444)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="AppComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="AppComponent" data-compartment="0">
+<a id="src\app\app.component.ts.AppComponent" xlink:href="src\app\app.component.ts"><text x="123.5" y="14.1" stroke="none" text-anchor="middle" data-name="AppComponent" data-compartment="0">AppComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(0, 476)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="AppComponent" data-compartment="1">+title: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="AppComponent" data-compartment="1">+isAuthenticated: boolean</text>
+<text x="0.0" y="46.5" stroke="none" data-name="AppComponent" data-compartment="1">-authSubscription: Subscription</text>
+<text x="0.0" y="62.7" stroke="none" data-name="AppComponent" data-compartment="1">-loginService: LoginService</text>
+
+</g>
+</g>
+<g transform="translate(0, 557)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="AppComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="AppComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="AppComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="AppComponent" data-compartment="2">+ngOnDestroy(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="OnInit">
+<g fill="#eee8d5" stroke="#33322E" data-name="OnInit">
+<rect x="1211.0" y="153.5" height="32.0" width="63.0" data-name="OnInit"></rect>
+</g>
+<g transform="translate(1211, 153.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnInit" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OnInit" data-compartment="0">
+<text x="23.5" y="14.1" stroke="none" text-anchor="middle" data-name="OnInit" data-compartment="0">OnInit</text>
+
+</g>
+</g>
+</g>
+<g data-name="OnDestroy">
+<g fill="#eee8d5" stroke="#33322E" data-name="OnDestroy">
+<rect x="61.5" y="153.5" height="32.0" width="100.0" data-name="OnDestroy"></rect>
+</g>
+<g transform="translate(61.5, 153.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="OnDestroy" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="OnDestroy" data-compartment="0">
+<text x="42.0" y="14.1" stroke="none" text-anchor="middle" data-name="OnDestroy" data-compartment="0">OnDestroy</text>
+
+</g>
+</g>
+</g>
+<g data-name="ClienteModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="ClienteModel">
+<rect x="1314.0" y="85.0" height="169.0" width="176.0" data-name="ClienteModel"></rect>
+<path d="M1314.0 117.0 L1490.0 117.0" fill="none" data-name="ClienteModel"></path>
+<path d="M1314.0 246.0 L1490.0 246.0" fill="none" data-name="ClienteModel"></path>
+</g>
+<g transform="translate(1314, 85)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ClienteModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ClienteModel" data-compartment="0">
+<a id="src\app\model\cliente-model.ts.ClienteModel" xlink:href="src\app\model\cliente-model.ts"><text x="80.0" y="14.1" stroke="none" text-anchor="middle" data-name="ClienteModel" data-compartment="0">ClienteModel</text></a>
+
+</g>
+</g>
+<g transform="translate(1314, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ClienteModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ClienteModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ClienteModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ClienteModel" data-compartment="1">+apellido_pa: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ClienteModel" data-compartment="1">+apellido_ma: string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ClienteModel" data-compartment="1">+dni: string</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ClienteModel" data-compartment="1">+telefono: string</text>
+<text x="0.0" y="111.3" stroke="none" data-name="ClienteModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(1314, 246)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ClienteModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="CompraModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="CompraModel">
+<rect x="1530.0" y="101.0" height="137.0" width="177.0" data-name="CompraModel"></rect>
+<path d="M1530.0 133.0 L1707.0 133.0" fill="none" data-name="CompraModel"></path>
+<path d="M1530.0 230.0 L1707.0 230.0" fill="none" data-name="CompraModel"></path>
+</g>
+<g transform="translate(1530, 101)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CompraModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CompraModel" data-compartment="0">
+<a id="src\app\model\compra-model.ts.CompraModel" xlink:href="src\app\model\compra-model.ts"><text x="80.5" y="14.1" stroke="none" text-anchor="middle" data-name="CompraModel" data-compartment="0">CompraModel</text></a>
+
+</g>
+</g>
+<g transform="translate(1530, 133)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CompraModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="CompraModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="CompraModel" data-compartment="1">+proveedor: number</text>
+<text x="0.0" y="46.5" stroke="none" data-name="CompraModel" data-compartment="1">+fecha: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="CompraModel" data-compartment="1">+total: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="CompraModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(1530, 230)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="CompraModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="ResumenModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="ResumenModel">
+<rect x="1747.0" y="109.0" height="121.0" width="210.0" data-name="ResumenModel"></rect>
+<path d="M1747.0 141.0 L1957.0 141.0" fill="none" data-name="ResumenModel"></path>
+<path d="M1747.0 222.0 L1957.0 222.0" fill="none" data-name="ResumenModel"></path>
+</g>
+<g transform="translate(1747, 109)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ResumenModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ResumenModel" data-compartment="0">
+<a id="src\app\model\dashboard-models.ts.ResumenModel" xlink:href="src\app\model\dashboard-models.ts"><text x="97.0" y="14.1" stroke="none" text-anchor="middle" data-name="ResumenModel" data-compartment="0">ResumenModel</text></a>
+
+</g>
+</g>
+<g transform="translate(1747, 141)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ResumenModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ResumenModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ResumenModel" data-compartment="1">+totalClientes: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ResumenModel" data-compartment="1">+totalVentas: number</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ResumenModel" data-compartment="1">+totalProductos: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ResumenModel" data-compartment="1">+totalCompras: number</text>
+
+</g>
+</g>
+<g transform="translate(1747, 222)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ResumenModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ResumenModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="DetallecompraModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetallecompraModel">
+<rect x="1997.0" y="85.0" height="169.0" width="207.0" data-name="DetallecompraModel"></rect>
+<path d="M1997.0 117.0 L2204.0 117.0" fill="none" data-name="DetallecompraModel"></path>
+<path d="M1997.0 246.0 L2204.0 246.0" fill="none" data-name="DetallecompraModel"></path>
+</g>
+<g transform="translate(1997, 85)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetallecompraModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetallecompraModel" data-compartment="0">
+<a id="src\app\model\detalle-compra-model.ts.DetallecompraModel" xlink:href="src\app\model\detalle-compra-model.ts"><text x="95.5" y="14.1" stroke="none" text-anchor="middle" data-name="DetallecompraModel" data-compartment="0">DetallecompraModel</text></a>
+
+</g>
+</g>
+<g transform="translate(1997, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetallecompraModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetallecompraModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetallecompraModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetallecompraModel" data-compartment="1">+compra: number</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetallecompraModel" data-compartment="1">+producto: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetallecompraModel" data-compartment="1">+cantidad: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="DetallecompraModel" data-compartment="1">+precioCompra: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="DetallecompraModel" data-compartment="1">+subtotal: number</text>
+<text x="0.0" y="111.3" stroke="none" data-name="DetallecompraModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(1997, 246)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetallecompraModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DetallecompraModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="DetalleVentaModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetalleVentaModel">
+<rect x="2244.0" y="85.0" height="169.0" width="206.0" data-name="DetalleVentaModel"></rect>
+<path d="M2244.0 117.0 L2450.0 117.0" fill="none" data-name="DetalleVentaModel"></path>
+<path d="M2244.0 246.0 L2450.0 246.0" fill="none" data-name="DetalleVentaModel"></path>
+</g>
+<g transform="translate(2244, 85)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetalleVentaModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetalleVentaModel" data-compartment="0">
+<a id="src\app\model\detalle-venta-model.ts.DetalleVentaModel" xlink:href="src\app\model\detalle-venta-model.ts"><text x="95.0" y="14.1" stroke="none" text-anchor="middle" data-name="DetalleVentaModel" data-compartment="0">DetalleVentaModel</text></a>
+
+</g>
+</g>
+<g transform="translate(2244, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleVentaModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+venta: number</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+producto: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+cantidad: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+precioUnitario: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+subtotal: number</text>
+<text x="0.0" y="111.3" stroke="none" data-name="DetalleVentaModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(2244, 246)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="DetalleVentaModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="KardexModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="KardexModel">
+<rect x="2490.0" y="93.0" height="153.0" width="166.0" data-name="KardexModel"></rect>
+<path d="M2490.0 125.0 L2656.0 125.0" fill="none" data-name="KardexModel"></path>
+<path d="M2490.0 238.0 L2656.0 238.0" fill="none" data-name="KardexModel"></path>
+</g>
+<g transform="translate(2490, 93)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KardexModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KardexModel" data-compartment="0">
+<a id="src\app\model\kardex-model.ts.KardexModel" xlink:href="src\app\model\kardex-model.ts"><text x="75.0" y="14.1" stroke="none" text-anchor="middle" data-name="KardexModel" data-compartment="0">KardexModel</text></a>
+
+</g>
+</g>
+<g transform="translate(2490, 125)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KardexModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="KardexModel" data-compartment="1">+fecha: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="KardexModel" data-compartment="1">+producto: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="KardexModel" data-compartment="1">+detalle: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="KardexModel" data-compartment="1">+entradas: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="KardexModel" data-compartment="1">+salidas: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="KardexModel" data-compartment="1">+stock: number</text>
+
+</g>
+</g>
+<g transform="translate(2490, 238)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="KardexModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="MaterialModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="MaterialModel">
+<rect x="2696.0" y="117.0" height="105.0" width="154.0" data-name="MaterialModel"></rect>
+<path d="M2696.0 149.0 L2850.0 149.0" fill="none" data-name="MaterialModel"></path>
+<path d="M2696.0 214.0 L2850.0 214.0" fill="none" data-name="MaterialModel"></path>
+</g>
+<g transform="translate(2696, 117)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MaterialModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MaterialModel" data-compartment="0">
+<a id="src\app\model\material-model.ts.MaterialModel" xlink:href="src\app\model\material-model.ts"><text x="69.0" y="14.1" stroke="none" text-anchor="middle" data-name="MaterialModel" data-compartment="0">MaterialModel</text></a>
+
+</g>
+</g>
+<g transform="translate(2696, 149)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MaterialModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MaterialModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MaterialModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MaterialModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(2696, 214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MaterialModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="MetodoPagoModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="MetodoPagoModel">
+<rect x="2890.0" y="117.0" height="105.0" width="164.0" data-name="MetodoPagoModel"></rect>
+<path d="M2890.0 149.0 L3054.0 149.0" fill="none" data-name="MetodoPagoModel"></path>
+<path d="M2890.0 214.0 L3054.0 214.0" fill="none" data-name="MetodoPagoModel"></path>
+</g>
+<g transform="translate(2890, 117)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MetodoPagoModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetodoPagoModel" data-compartment="0">
+<a id="src\app\model\metodo-pago-model.ts.MetodoPagoModel" xlink:href="src\app\model\metodo-pago-model.ts"><text x="74.0" y="14.1" stroke="none" text-anchor="middle" data-name="MetodoPagoModel" data-compartment="0">MetodoPagoModel</text></a>
+
+</g>
+</g>
+<g transform="translate(2890, 149)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetodoPagoModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MetodoPagoModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MetodoPagoModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MetodoPagoModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(2890, 214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MetodoPagoModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="ProductoModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProductoModel">
+<rect x="3094.0" y="68.5" height="202.0" width="196.0" data-name="ProductoModel"></rect>
+<path d="M3094.0 100.5 L3290.0 100.5" fill="none" data-name="ProductoModel"></path>
+<path d="M3094.0 262.5 L3290.0 262.5" fill="none" data-name="ProductoModel"></path>
+</g>
+<g transform="translate(3094, 68.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProductoModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProductoModel" data-compartment="0">
+<a id="src\app\model\producto-model.ts.ProductoModel" xlink:href="src\app\model\producto-model.ts"><text x="90.0" y="14.1" stroke="none" text-anchor="middle" data-name="ProductoModel" data-compartment="0">ProductoModel</text></a>
+
+</g>
+</g>
+<g transform="translate(3094, 100.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProductoModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProductoModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProductoModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProductoModel" data-compartment="1">+tipoProducto: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProductoModel" data-compartment="1">+material: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProductoModel" data-compartment="1">+cantidad: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProductoModel" data-compartment="1">+precio: number</text>
+<text x="0.0" y="111.3" stroke="none" data-name="ProductoModel" data-compartment="1">+medidas: string</text>
+<text x="0.0" y="127.5" stroke="none" data-name="ProductoModel" data-compartment="1">+descripcion: string</text>
+<text x="0.0" y="143.7" stroke="none" data-name="ProductoModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(3094, 262.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ProductoModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="ProveedorModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProveedorModel">
+<rect x="3330.0" y="93.0" height="153.0" width="181.0" data-name="ProveedorModel"></rect>
+<path d="M3330.0 125.0 L3511.0 125.0" fill="none" data-name="ProveedorModel"></path>
+<path d="M3330.0 238.0 L3511.0 238.0" fill="none" data-name="ProveedorModel"></path>
+</g>
+<g transform="translate(3330, 93)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProveedorModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProveedorModel" data-compartment="0">
+<a id="src\app\model\proveedor-model.ts.ProveedorModel" xlink:href="src\app\model\proveedor-model.ts"><text x="82.5" y="14.1" stroke="none" text-anchor="middle" data-name="ProveedorModel" data-compartment="0">ProveedorModel</text></a>
+
+</g>
+</g>
+<g transform="translate(3330, 125)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProveedorModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProveedorModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProveedorModel" data-compartment="1">+razon_social: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProveedorModel" data-compartment="1">+ruc: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProveedorModel" data-compartment="1">+direccion: string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProveedorModel" data-compartment="1">+telefono: string</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProveedorModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(3330, 238)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="ProveedorModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="RoleModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="RoleModel">
+<rect x="3551.0" y="117.0" height="105.0" width="154.0" data-name="RoleModel"></rect>
+<path d="M3551.0 149.0 L3705.0 149.0" fill="none" data-name="RoleModel"></path>
+<path d="M3551.0 214.0 L3705.0 214.0" fill="none" data-name="RoleModel"></path>
+</g>
+<g transform="translate(3551, 117)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="RoleModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="RoleModel" data-compartment="0">
+<a id="src\app\model\Role-model.ts.RoleModel" xlink:href="src\app\model\Role-model.ts"><text x="69.0" y="14.1" stroke="none" text-anchor="middle" data-name="RoleModel" data-compartment="0">RoleModel</text></a>
+
+</g>
+</g>
+<g transform="translate(3551, 149)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RoleModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="RoleModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="RoleModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="RoleModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(3551, 214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="RoleModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="tipoproductoModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="tipoproductoModel">
+<rect x="3745.0" y="117.0" height="105.0" width="163.0" data-name="tipoproductoModel"></rect>
+<path d="M3745.0 149.0 L3908.0 149.0" fill="none" data-name="tipoproductoModel"></path>
+<path d="M3745.0 214.0 L3908.0 214.0" fill="none" data-name="tipoproductoModel"></path>
+</g>
+<g transform="translate(3745, 117)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="tipoproductoModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="tipoproductoModel" data-compartment="0">
+<a id="src\app\model\tipo-producto-model.ts.tipoproductoModel" xlink:href="src\app\model\tipo-producto-model.ts"><text x="73.5" y="14.1" stroke="none" text-anchor="middle" data-name="tipoproductoModel" data-compartment="0">tipoproductoModel</text></a>
+
+</g>
+</g>
+<g transform="translate(3745, 149)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tipoproductoModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="tipoproductoModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="tipoproductoModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="tipoproductoModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="tipoproductoModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(3745, 214)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="tipoproductoModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="tipoproductoModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="UsuarioModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="UsuarioModel">
+<rect x="3948.0" y="76.5" height="186.0" width="176.0" data-name="UsuarioModel"></rect>
+<path d="M3948.0 108.5 L4124.0 108.5" fill="none" data-name="UsuarioModel"></path>
+<path d="M3948.0 254.5 L4124.0 254.5" fill="none" data-name="UsuarioModel"></path>
+</g>
+<g transform="translate(3948, 76.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UsuarioModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UsuarioModel" data-compartment="0">
+<a id="src\app\model\usuario-model.ts.UsuarioModel" xlink:href="src\app\model\usuario-model.ts"><text x="80.0" y="14.1" stroke="none" text-anchor="middle" data-name="UsuarioModel" data-compartment="0">UsuarioModel</text></a>
+
+</g>
+</g>
+<g transform="translate(3948, 108.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UsuarioModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="UsuarioModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="UsuarioModel" data-compartment="1">+nombre: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="UsuarioModel" data-compartment="1">+apellido_pa: string</text>
+<text x="0.0" y="62.7" stroke="none" data-name="UsuarioModel" data-compartment="1">+apellido_ma: string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="UsuarioModel" data-compartment="1">+correo: string</text>
+<text x="0.0" y="95.1" stroke="none" data-name="UsuarioModel" data-compartment="1">+password: string</text>
+<text x="0.0" y="111.3" stroke="none" data-name="UsuarioModel" data-compartment="1">+role: number</text>
+<text x="0.0" y="127.5" stroke="none" data-name="UsuarioModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(3948, 254.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="UsuarioModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="VentaModel">
+<g fill="#eee8d5" stroke="#33322E" data-name="VentaModel">
+<rect x="4164.0" y="85.0" height="169.0" width="196.0" data-name="VentaModel"></rect>
+<path d="M4164.0 117.0 L4360.0 117.0" fill="none" data-name="VentaModel"></path>
+<path d="M4164.0 246.0 L4360.0 246.0" fill="none" data-name="VentaModel"></path>
+</g>
+<g transform="translate(4164, 85)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="VentaModel" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="VentaModel" data-compartment="0">
+<a id="src\app\model\venta-model.ts.VentaModel" xlink:href="src\app\model\venta-model.ts"><text x="90.0" y="14.1" stroke="none" text-anchor="middle" data-name="VentaModel" data-compartment="0">VentaModel</text></a>
+
+</g>
+</g>
+<g transform="translate(4164, 117)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaModel" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="VentaModel" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="VentaModel" data-compartment="1">+id: number</text>
+<text x="0.0" y="30.3" stroke="none" data-name="VentaModel" data-compartment="1">+cliente: number</text>
+<text x="0.0" y="46.5" stroke="none" data-name="VentaModel" data-compartment="1">+usuario: number</text>
+<text x="0.0" y="62.7" stroke="none" data-name="VentaModel" data-compartment="1">+metodoPago: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="VentaModel" data-compartment="1">+fecha: string</text>
+<text x="0.0" y="95.1" stroke="none" data-name="VentaModel" data-compartment="1">+total: number</text>
+<text x="0.0" y="111.3" stroke="none" data-name="VentaModel" data-compartment="1">+estado: boolean</text>
+
+</g>
+</g>
+<g transform="translate(4164, 246)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaModel" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="VentaModel" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="ClienteComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="ClienteComponent">
+<rect x="303.0" y="379.0" height="291.0" width="264.0" data-name="ClienteComponent"></rect>
+<path d="M303.0 411.0 L567.0 411.0" fill="none" data-name="ClienteComponent"></path>
+<path d="M303.0 524.0 L567.0 524.0" fill="none" data-name="ClienteComponent"></path>
+</g>
+<g transform="translate(303, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ClienteComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ClienteComponent" data-compartment="0">
+<a id="src\app\components\cliente\cliente.component.ts.ClienteComponent" xlink:href="src\app\components\cliente\cliente.component.ts"><text x="124.0" y="14.1" stroke="none" text-anchor="middle" data-name="ClienteComponent" data-compartment="0">ClienteComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(303, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ClienteComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ClienteComponent" data-compartment="1">+listCliente: ClienteModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ClienteComponent" data-compartment="1">+formCliente: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ClienteComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ClienteComponent" data-compartment="1">+cliente: ClienteModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ClienteComponent" data-compartment="1">+clienteId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ClienteComponent" data-compartment="1">-clienteservice: ClienteService</text>
+
+</g>
+</g>
+<g transform="translate(303, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ClienteComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ClienteComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ClienteComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ClienteComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ClienteComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ClienteComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ClienteComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="ClienteComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="ClienteComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="CompraComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="CompraComponent">
+<rect x="607.0" y="419.5" height="210.0" width="271.0" data-name="CompraComponent"></rect>
+<path d="M607.0 451.5 L878.0 451.5" fill="none" data-name="CompraComponent"></path>
+<path d="M607.0 548.5 L878.0 548.5" fill="none" data-name="CompraComponent"></path>
+</g>
+<g transform="translate(607, 419.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CompraComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CompraComponent" data-compartment="0">
+<a id="src\app\components\compra\compra.component.ts.CompraComponent" xlink:href="src\app\components\compra\compra.component.ts"><text x="127.5" y="14.1" stroke="none" text-anchor="middle" data-name="CompraComponent" data-compartment="0">CompraComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(607, 451.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CompraComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="CompraComponent" data-compartment="1">+listCompra: CompraModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="CompraComponent" data-compartment="1">+formCompra: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="CompraComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="CompraComponent" data-compartment="1">+compraId: number</text>
+<text x="0.0" y="78.9" stroke="none" data-name="CompraComponent" data-compartment="1">-servi: CompraService</text>
+
+</g>
+</g>
+<g transform="translate(607, 548.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CompraComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="CompraComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="CompraComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="CompraComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="CompraComponent" data-compartment="2">+buscarUsuarioPorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="DashboardComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DashboardComponent">
+<rect x="918.0" y="460.5" height="128.0" width="216.0" data-name="DashboardComponent"></rect>
+<path d="M918.0 492.5 L1134.0 492.5" fill="none" data-name="DashboardComponent"></path>
+<path d="M918.0 540.5 L1134.0 540.5" fill="none" data-name="DashboardComponent"></path>
+</g>
+<g transform="translate(918, 460.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DashboardComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DashboardComponent" data-compartment="0">
+<a id="src\app\components\dashboard\dashboard.component.ts.DashboardComponent" xlink:href="src\app\components\dashboard\dashboard.component.ts"><text x="100.0" y="14.1" stroke="none" text-anchor="middle" data-name="DashboardComponent" data-compartment="0">DashboardComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(918, 492.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DashboardComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DashboardComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DashboardComponent" data-compartment="1">+list: ResumenModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DashboardComponent" data-compartment="1">-servi: DashboardService</text>
+
+</g>
+</g>
+<g transform="translate(918, 540.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DashboardComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DashboardComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DashboardComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DashboardComponent" data-compartment="2">+getResumen(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="DetalleCompraComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetalleCompraComponent">
+<rect x="1174.0" y="411.5" height="226.0" width="294.0" data-name="DetalleCompraComponent"></rect>
+<path d="M1174.0 443.5 L1468.0 443.5" fill="none" data-name="DetalleCompraComponent"></path>
+<path d="M1174.0 556.5 L1468.0 556.5" fill="none" data-name="DetalleCompraComponent"></path>
+</g>
+<g transform="translate(1174, 411.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetalleCompraComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetalleCompraComponent" data-compartment="0">
+<a id="src\app\components\detalle-compra\detalle-compra.component.ts.DetalleCompraComponent" xlink:href="src\app\components\detalle-compra\detalle-compra.component.ts"><text x="139.0" y="14.1" stroke="none" text-anchor="middle" data-name="DetalleCompraComponent" data-compartment="0">DetalleCompraComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(1174, 443.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleCompraComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleCompraComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">+listDetallec: DetallecompraModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">+formDetallec: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">+Detalle: DetallecompraModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">+DetalleId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="DetalleCompraComponent" data-compartment="1">-servi: DetalleCompraService</text>
+
+</g>
+</g>
+<g transform="translate(1174, 556.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleCompraComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleCompraComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleCompraComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleCompraComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleCompraComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetalleCompraComponent" data-compartment="2">+buscarUsuarioPorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="DetalleVentaComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetalleVentaComponent">
+<rect x="1508.0" y="411.5" height="226.0" width="281.0" data-name="DetalleVentaComponent"></rect>
+<path d="M1508.0 443.5 L1789.0 443.5" fill="none" data-name="DetalleVentaComponent"></path>
+<path d="M1508.0 556.5 L1789.0 556.5" fill="none" data-name="DetalleVentaComponent"></path>
+</g>
+<g transform="translate(1508, 411.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetalleVentaComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetalleVentaComponent" data-compartment="0">
+<a id="src\app\components\detalle-venta\detalle-venta.component.ts.DetalleVentaComponent" xlink:href="src\app\components\detalle-venta\detalle-venta.component.ts"><text x="132.5" y="14.1" stroke="none" text-anchor="middle" data-name="DetalleVentaComponent" data-compartment="0">DetalleVentaComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(1508, 443.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleVentaComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">+listDetallev: DetalleVentaModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">+formDetallev: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">+Detalle: DetalleVentaModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">+DetalleId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="DetalleVentaComponent" data-compartment="1">-servi: DetalleVentaService</text>
+
+</g>
+</g>
+<g transform="translate(1508, 556.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleVentaComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleVentaComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleVentaComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleVentaComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="DetalleVentaComponent" data-compartment="2">+buscarUsuarioPorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="KardexComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="KardexComponent">
+<rect x="1829.0" y="460.5" height="128.0" width="226.0" data-name="KardexComponent"></rect>
+<path d="M1829.0 492.5 L2055.0 492.5" fill="none" data-name="KardexComponent"></path>
+<path d="M1829.0 540.5 L2055.0 540.5" fill="none" data-name="KardexComponent"></path>
+</g>
+<g transform="translate(1829, 460.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KardexComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KardexComponent" data-compartment="0">
+<a id="src\app\components\kardex\kardex.component.ts.KardexComponent" xlink:href="src\app\components\kardex\kardex.component.ts"><text x="105.0" y="14.1" stroke="none" text-anchor="middle" data-name="KardexComponent" data-compartment="0">KardexComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(1829, 492.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KardexComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="KardexComponent" data-compartment="1">+listkardex: KardexModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="KardexComponent" data-compartment="1">-servi: KardexService</text>
+
+</g>
+</g>
+<g transform="translate(1829, 540.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KardexComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="KardexComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="KardexComponent" data-compartment="2">+list(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="LoginComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="LoginComponent">
+<rect x="4400.0" y="97.0" height="145.0" width="232.0" data-name="LoginComponent"></rect>
+<path d="M4400.0 129.0 L4632.0 129.0" fill="none" data-name="LoginComponent"></path>
+<path d="M4400.0 210.0 L4632.0 210.0" fill="none" data-name="LoginComponent"></path>
+</g>
+<g transform="translate(4400, 97)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LoginComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LoginComponent" data-compartment="0">
+<a id="src\app\components\login\login.component.ts.LoginComponent" xlink:href="src\app\components\login\login.component.ts"><text x="108.0" y="14.1" stroke="none" text-anchor="middle" data-name="LoginComponent" data-compartment="0">LoginComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(4400, 129)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="LoginComponent" data-compartment="1">+correo: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="LoginComponent" data-compartment="1">+password: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="LoginComponent" data-compartment="1">-loginService: LoginService</text>
+<text x="0.0" y="62.7" stroke="none" data-name="LoginComponent" data-compartment="1">-router: Router</text>
+
+</g>
+</g>
+<g transform="translate(4400, 210)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="LoginComponent" data-compartment="2">+login(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="MaterialComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="MaterialComponent">
+<rect x="2095.0" y="379.0" height="291.0" width="274.0" data-name="MaterialComponent"></rect>
+<path d="M2095.0 411.0 L2369.0 411.0" fill="none" data-name="MaterialComponent"></path>
+<path d="M2095.0 524.0 L2369.0 524.0" fill="none" data-name="MaterialComponent"></path>
+</g>
+<g transform="translate(2095, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MaterialComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MaterialComponent" data-compartment="0">
+<a id="src\app\components\material\material.component.ts.MaterialComponent" xlink:href="src\app\components\material\material.component.ts"><text x="129.0" y="14.1" stroke="none" text-anchor="middle" data-name="MaterialComponent" data-compartment="0">MaterialComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(2095, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MaterialComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MaterialComponent" data-compartment="1">+listMaterial: MaterialModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MaterialComponent" data-compartment="1">+formMaterial: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MaterialComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MaterialComponent" data-compartment="1">+material: MaterialModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MaterialComponent" data-compartment="1">+materialId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="MaterialComponent" data-compartment="1">-materialservice: MaterialService</text>
+
+</g>
+</g>
+<g transform="translate(2095, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MaterialComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="MaterialComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MaterialComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MaterialComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MaterialComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MaterialComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="MaterialComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="MaterialComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="MaterialComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="MenuComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="MenuComponent">
+<rect x="4672.0" y="145.5" height="48.0" width="151.0" data-name="MenuComponent"></rect>
+<path d="M4672.0 177.5 L4823.0 177.5" fill="none" data-name="MenuComponent"></path>
+<path d="M4672.0 185.5 L4823.0 185.5" fill="none" data-name="MenuComponent"></path>
+</g>
+<g transform="translate(4672, 145.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MenuComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MenuComponent" data-compartment="0">
+<a id="src\app\components\menu\menu.component.ts.MenuComponent" xlink:href="src\app\components\menu\menu.component.ts"><text x="67.5" y="14.1" stroke="none" text-anchor="middle" data-name="MenuComponent" data-compartment="0">MenuComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(4672, 177.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MenuComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MenuComponent" data-compartment="1">
+
+</g>
+</g>
+<g transform="translate(4672, 185.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MenuComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" data-name="MenuComponent" data-compartment="2">
+
+</g>
+</g>
+</g>
+<g data-name="MetodoPagoComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="MetodoPagoComponent">
+<rect x="2409.0" y="379.0" height="291.0" width="307.0" data-name="MetodoPagoComponent"></rect>
+<path d="M2409.0 411.0 L2716.0 411.0" fill="none" data-name="MetodoPagoComponent"></path>
+<path d="M2409.0 524.0 L2716.0 524.0" fill="none" data-name="MetodoPagoComponent"></path>
+</g>
+<g transform="translate(2409, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MetodoPagoComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetodoPagoComponent" data-compartment="0">
+<a id="src\app\components\metodo-pago\metodo-pago.component.ts.MetodoPagoComponent" xlink:href="src\app\components\metodo-pago\metodo-pago.component.ts"><text x="145.5" y="14.1" stroke="none" text-anchor="middle" data-name="MetodoPagoComponent" data-compartment="0">MetodoPagoComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(2409, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetodoPagoComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">+listMetodop: MetodoPagoModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">+formMetodo: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">+role: MetodoPagoModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">+metodoId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="MetodoPagoComponent" data-compartment="1">-metodoservice: MetodoPagoService</text>
+
+</g>
+</g>
+<g transform="translate(2409, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetodoPagoComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="MetodoPagoComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProductoComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProductoComponent">
+<rect x="2756.0" y="379.0" height="291.0" width="289.0" data-name="ProductoComponent"></rect>
+<path d="M2756.0 411.0 L3045.0 411.0" fill="none" data-name="ProductoComponent"></path>
+<path d="M2756.0 524.0 L3045.0 524.0" fill="none" data-name="ProductoComponent"></path>
+</g>
+<g transform="translate(2756, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProductoComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProductoComponent" data-compartment="0">
+<a id="src\app\components\producto\producto.component.ts.ProductoComponent" xlink:href="src\app\components\producto\producto.component.ts"><text x="136.5" y="14.1" stroke="none" text-anchor="middle" data-name="ProductoComponent" data-compartment="0">ProductoComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(2756, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProductoComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProductoComponent" data-compartment="1">+listProducto: ProductoModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProductoComponent" data-compartment="1">+formProducto: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProductoComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProductoComponent" data-compartment="1">+producto: ProductoModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProductoComponent" data-compartment="1">+proId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProductoComponent" data-compartment="1">-productoservice: ProductoService</text>
+
+</g>
+</g>
+<g transform="translate(2756, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProductoComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ProductoComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProductoComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProductoComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProductoComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProductoComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProductoComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="ProductoComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="ProductoComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProveedorComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProveedorComponent">
+<rect x="3085.0" y="379.0" height="291.0" width="292.0" data-name="ProveedorComponent"></rect>
+<path d="M3085.0 411.0 L3377.0 411.0" fill="none" data-name="ProveedorComponent"></path>
+<path d="M3085.0 524.0 L3377.0 524.0" fill="none" data-name="ProveedorComponent"></path>
+</g>
+<g transform="translate(3085, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProveedorComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProveedorComponent" data-compartment="0">
+<a id="src\app\components\proveedor\proveedor.component.ts.ProveedorComponent" xlink:href="src\app\components\proveedor\proveedor.component.ts"><text x="138.0" y="14.1" stroke="none" text-anchor="middle" data-name="ProveedorComponent" data-compartment="0">ProveedorComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(3085, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProveedorComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProveedorComponent" data-compartment="1">+listProveedor: ProveedorModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProveedorComponent" data-compartment="1">+formProveedor: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProveedorComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProveedorComponent" data-compartment="1">+proveedor: ProveedorModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProveedorComponent" data-compartment="1">+proId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProveedorComponent" data-compartment="1">-proveedorservi: ProveedorService</text>
+
+</g>
+</g>
+<g transform="translate(3085, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProveedorComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ProveedorComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProveedorComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProveedorComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProveedorComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProveedorComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="ProveedorComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="ProveedorComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="ProveedorComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="RoleComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="RoleComponent">
+<rect x="3417.0" y="379.0" height="291.0" width="245.0" data-name="RoleComponent"></rect>
+<path d="M3417.0 411.0 L3662.0 411.0" fill="none" data-name="RoleComponent"></path>
+<path d="M3417.0 524.0 L3662.0 524.0" fill="none" data-name="RoleComponent"></path>
+</g>
+<g transform="translate(3417, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="RoleComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="RoleComponent" data-compartment="0">
+<a id="src\app\components\role\role.component.ts.RoleComponent" xlink:href="src\app\components\role\role.component.ts"><text x="114.5" y="14.1" stroke="none" text-anchor="middle" data-name="RoleComponent" data-compartment="0">RoleComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(3417, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RoleComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="RoleComponent" data-compartment="1">+listRole: RoleModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="RoleComponent" data-compartment="1">+formRole: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="RoleComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="RoleComponent" data-compartment="1">+role: RoleModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="RoleComponent" data-compartment="1">+roleId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="RoleComponent" data-compartment="1">-roleservice: RoleService</text>
+
+</g>
+</g>
+<g transform="translate(3417, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RoleComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="RoleComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="RoleComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="RoleComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="RoleComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="RoleComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="RoleComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="RoleComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="RoleComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="TipoProductoComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="TipoProductoComponent">
+<rect x="3702.0" y="379.0" height="291.0" width="292.0" data-name="TipoProductoComponent"></rect>
+<path d="M3702.0 411.0 L3994.0 411.0" fill="none" data-name="TipoProductoComponent"></path>
+<path d="M3702.0 524.0 L3994.0 524.0" fill="none" data-name="TipoProductoComponent"></path>
+</g>
+<g transform="translate(3702, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="TipoProductoComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="TipoProductoComponent" data-compartment="0">
+<a id="src\app\components\tipo-producto\tipo-producto.component.ts.TipoProductoComponent" xlink:href="src\app\components\tipo-producto\tipo-producto.component.ts"><text x="138.0" y="14.1" stroke="none" text-anchor="middle" data-name="TipoProductoComponent" data-compartment="0">TipoProductoComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(3702, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="TipoProductoComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="TipoProductoComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="TipoProductoComponent" data-compartment="1">+listTipo: tipoproductoModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="TipoProductoComponent" data-compartment="1">+formTipo: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="TipoProductoComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="TipoProductoComponent" data-compartment="1">+tipo: tipoproductoModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="TipoProductoComponent" data-compartment="1">+tipoId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="TipoProductoComponent" data-compartment="1">-tipopservice: TipoProductoService</text>
+
+</g>
+</g>
+<g transform="translate(3702, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="TipoProductoComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="TipoProductoComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+newRol(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="TipoProductoComponent" data-compartment="2">+buscarRolePorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="UsuarioComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="UsuarioComponent">
+<rect x="4034.0" y="379.0" height="291.0" width="270.0" data-name="UsuarioComponent"></rect>
+<path d="M4034.0 411.0 L4304.0 411.0" fill="none" data-name="UsuarioComponent"></path>
+<path d="M4034.0 524.0 L4304.0 524.0" fill="none" data-name="UsuarioComponent"></path>
+</g>
+<g transform="translate(4034, 379)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UsuarioComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UsuarioComponent" data-compartment="0">
+<a id="src\app\components\usuario\usuario.component.ts.UsuarioComponent" xlink:href="src\app\components\usuario\usuario.component.ts"><text x="127.0" y="14.1" stroke="none" text-anchor="middle" data-name="UsuarioComponent" data-compartment="0">UsuarioComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(4034, 411)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UsuarioComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="UsuarioComponent" data-compartment="1">+listUsuario: UsuarioModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="UsuarioComponent" data-compartment="1">+formUsuario: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="UsuarioComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="UsuarioComponent" data-compartment="1">+usuario: UsuarioModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="UsuarioComponent" data-compartment="1">+usuarioId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="UsuarioComponent" data-compartment="1">-usuarioservice: UsuarioService</text>
+
+</g>
+</g>
+<g transform="translate(4034, 524)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UsuarioComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="UsuarioComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="UsuarioComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="UsuarioComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="UsuarioComponent" data-compartment="2">+update(): void</text>
+<text x="0.0" y="78.9" stroke="none" data-name="UsuarioComponent" data-compartment="2">+delete(): void</text>
+<text x="0.0" y="95.1" stroke="none" data-name="UsuarioComponent" data-compartment="2">+newUsuario(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="UsuarioComponent" data-compartment="2">+selectItem(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="UsuarioComponent" data-compartment="2">+buscarUsuarioPorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="VentaComponent">
+<g fill="#eee8d5" stroke="#33322E" data-name="VentaComponent">
+<rect x="4344.0" y="411.5" height="226.0" width="255.0" data-name="VentaComponent"></rect>
+<path d="M4344.0 443.5 L4599.0 443.5" fill="none" data-name="VentaComponent"></path>
+<path d="M4344.0 556.5 L4599.0 556.5" fill="none" data-name="VentaComponent"></path>
+</g>
+<g transform="translate(4344, 411.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="VentaComponent" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="VentaComponent" data-compartment="0">
+<a id="src\app\components\venta\venta.component.ts.VentaComponent" xlink:href="src\app\components\venta\venta.component.ts"><text x="119.5" y="14.1" stroke="none" text-anchor="middle" data-name="VentaComponent" data-compartment="0">VentaComponent</text></a>
+
+</g>
+</g>
+<g transform="translate(4344, 443.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaComponent" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="VentaComponent" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="VentaComponent" data-compartment="1">+listVenta: VentaModel[]</text>
+<text x="0.0" y="30.3" stroke="none" data-name="VentaComponent" data-compartment="1">+formVenta: FormGroup&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="VentaComponent" data-compartment="1">+isUpdate: boolean</text>
+<text x="0.0" y="62.7" stroke="none" data-name="VentaComponent" data-compartment="1">+Venta: VentaModel</text>
+<text x="0.0" y="78.9" stroke="none" data-name="VentaComponent" data-compartment="1">+ventaId: number</text>
+<text x="0.0" y="95.1" stroke="none" data-name="VentaComponent" data-compartment="1">-servi: VentaService</text>
+
+</g>
+</g>
+<g transform="translate(4344, 556.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaComponent" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="VentaComponent" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="VentaComponent" data-compartment="2">+ngOnInit(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="VentaComponent" data-compartment="2">+list(): void</text>
+<text x="0.0" y="46.5" stroke="none" data-name="VentaComponent" data-compartment="2">+save(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="VentaComponent" data-compartment="2">+buscarUsuarioPorId(): void</text>
+
+</g>
+</g>
+</g>
+<g data-name="ClienteService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ClienteService">
+<rect x="4863.0" y="89.0" height="161.0" width="322.0" data-name="ClienteService"></rect>
+<path d="M4863.0 121.0 L5185.0 121.0" fill="none" data-name="ClienteService"></path>
+<path d="M4863.0 153.0 L5185.0 153.0" fill="none" data-name="ClienteService"></path>
+</g>
+<g transform="translate(4863, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ClienteService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ClienteService" data-compartment="0">
+<a id="src\app\service\cliente\cliente.service.ts.ClienteService" xlink:href="src\app\service\cliente\cliente.service.ts"><text x="153.0" y="14.1" stroke="none" text-anchor="middle" data-name="ClienteService" data-compartment="0">ClienteService</text></a>
+
+</g>
+</g>
+<g transform="translate(4863, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ClienteService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ClienteService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(4863, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ClienteService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ClienteService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ClienteService" data-compartment="2">+getAll(): Observable&lt;ClienteModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ClienteService" data-compartment="2">+getById(): Observable&lt;ClienteModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ClienteService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ClienteService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ClienteService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="CompraService">
+<g fill="#eee8d5" stroke="#33322E" data-name="CompraService">
+<rect x="5225.0" y="105.0" height="129.0" width="390.0" data-name="CompraService"></rect>
+<path d="M5225.0 137.0 L5615.0 137.0" fill="none" data-name="CompraService"></path>
+<path d="M5225.0 169.0 L5615.0 169.0" fill="none" data-name="CompraService"></path>
+</g>
+<g transform="translate(5225, 105)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="CompraService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="CompraService" data-compartment="0">
+<a id="src\app\service\compra\compra.service.ts.CompraService" xlink:href="src\app\service\compra\compra.service.ts"><text x="187.0" y="14.1" stroke="none" text-anchor="middle" data-name="CompraService" data-compartment="0">CompraService</text></a>
+
+</g>
+</g>
+<g transform="translate(5225, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CompraService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="CompraService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(5225, 169)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="CompraService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="CompraService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="CompraService" data-compartment="2">+getUsuario(): Observable&lt;CompraModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="CompraService" data-compartment="2">+getUsuarioById(): Observable&lt;CompraModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="CompraService" data-compartment="2">+saveUsuario(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="DashboardService">
+<g fill="#eee8d5" stroke="#33322E" data-name="DashboardService">
+<rect x="5655.0" y="121.5" height="96.0" width="392.0" data-name="DashboardService"></rect>
+<path d="M5655.0 153.5 L6047.0 153.5" fill="none" data-name="DashboardService"></path>
+<path d="M5655.0 185.5 L6047.0 185.5" fill="none" data-name="DashboardService"></path>
+</g>
+<g transform="translate(5655, 121.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DashboardService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DashboardService" data-compartment="0">
+<a id="src\app\service\dashboard\dashboard.service.ts.DashboardService" xlink:href="src\app\service\dashboard\dashboard.service.ts"><text x="188.0" y="14.1" stroke="none" text-anchor="middle" data-name="DashboardService" data-compartment="0">DashboardService</text></a>
+
+</g>
+</g>
+<g transform="translate(5655, 153.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DashboardService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DashboardService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DashboardService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(5655, 185.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DashboardService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DashboardService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DashboardService" data-compartment="2">+getResumen(): Observable&lt;ResumenModel[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="DetalleCompraService">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetalleCompraService">
+<rect x="6087.0" y="105.0" height="129.0" width="381.0" data-name="DetalleCompraService"></rect>
+<path d="M6087.0 137.0 L6468.0 137.0" fill="none" data-name="DetalleCompraService"></path>
+<path d="M6087.0 169.0 L6468.0 169.0" fill="none" data-name="DetalleCompraService"></path>
+</g>
+<g transform="translate(6087, 105)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetalleCompraService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetalleCompraService" data-compartment="0">
+<a id="src\app\service\detalle-compra\detalle-compra.service.ts.DetalleCompraService" xlink:href="src\app\service\detalle-compra\detalle-compra.service.ts"><text x="182.5" y="14.1" stroke="none" text-anchor="middle" data-name="DetalleCompraService" data-compartment="0">DetalleCompraService</text></a>
+
+</g>
+</g>
+<g transform="translate(6087, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleCompraService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleCompraService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleCompraService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(6087, 169)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleCompraService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleCompraService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleCompraService" data-compartment="2">+get(): Observable&lt;DetallecompraModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleCompraService" data-compartment="2">+getById(): Observable&lt;DetallecompraModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleCompraService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="DetalleVentaService">
+<g fill="#eee8d5" stroke="#33322E" data-name="DetalleVentaService">
+<rect x="6508.0" y="105.0" height="129.0" width="368.0" data-name="DetalleVentaService"></rect>
+<path d="M6508.0 137.0 L6876.0 137.0" fill="none" data-name="DetalleVentaService"></path>
+<path d="M6508.0 169.0 L6876.0 169.0" fill="none" data-name="DetalleVentaService"></path>
+</g>
+<g transform="translate(6508, 105)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="DetalleVentaService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="DetalleVentaService" data-compartment="0">
+<a id="src\app\service\detalle-venta\detalle-venta.service.ts.DetalleVentaService" xlink:href="src\app\service\detalle-venta\detalle-venta.service.ts"><text x="176.0" y="14.1" stroke="none" text-anchor="middle" data-name="DetalleVentaService" data-compartment="0">DetalleVentaService</text></a>
+
+</g>
+</g>
+<g transform="translate(6508, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleVentaService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleVentaService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(6508, 169)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="DetalleVentaService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="DetalleVentaService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="DetalleVentaService" data-compartment="2">+get(): Observable&lt;DetalleVentaModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="DetalleVentaService" data-compartment="2">+getById(): Observable&lt;DetalleVentaModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="DetalleVentaService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="KardexService">
+<g fill="#eee8d5" stroke="#33322E" data-name="KardexService">
+<rect x="6916.0" y="121.5" height="96.0" width="317.0" data-name="KardexService"></rect>
+<path d="M6916.0 153.5 L7233.0 153.5" fill="none" data-name="KardexService"></path>
+<path d="M6916.0 185.5 L7233.0 185.5" fill="none" data-name="KardexService"></path>
+</g>
+<g transform="translate(6916, 121.5)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="KardexService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="KardexService" data-compartment="0">
+<a id="src\app\service\kardex\kardex.service.ts.KardexService" xlink:href="src\app\service\kardex\kardex.service.ts"><text x="150.5" y="14.1" stroke="none" text-anchor="middle" data-name="KardexService" data-compartment="0">KardexService</text></a>
+
+</g>
+</g>
+<g transform="translate(6916, 153.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KardexService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="KardexService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(6916, 185.5)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="KardexService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="KardexService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="KardexService" data-compartment="2">+getAll(): Observable&lt;KardexModel[]&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="LoginService">
+<g fill="#eee8d5" stroke="#33322E" data-name="LoginService">
+<rect x="7273.0" y="0.0" height="339.0" width="426.0" data-name="LoginService"></rect>
+<path d="M7273.0 32.0 L7699.0 32.0" fill="none" data-name="LoginService"></path>
+<path d="M7273.0 161.0 L7699.0 161.0" fill="none" data-name="LoginService"></path>
+</g>
+<g transform="translate(7273, 0)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="LoginService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="LoginService" data-compartment="0">
+<a id="src\app\service\login\login.service.ts.LoginService" xlink:href="src\app\service\login\login.service.ts"><text x="205.0" y="14.1" stroke="none" text-anchor="middle" data-name="LoginService" data-compartment="0">LoginService</text></a>
+
+</g>
+</g>
+<g transform="translate(7273, 32)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="LoginService" data-compartment="1">-API_URL: string</text>
+<text x="0.0" y="30.3" stroke="none" data-name="LoginService" data-compartment="1">-tokenKey: string</text>
+<text x="0.0" y="46.5" stroke="none" data-name="LoginService" data-compartment="1">-isAuthenticatedSubject: BehaviorSubject&lt;boolean&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="LoginService" data-compartment="1">+isAuthenticated$: Observable&lt;boolean&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="LoginService" data-compartment="1">-httpClient: HttpClient</text>
+<text x="0.0" y="95.1" stroke="none" data-name="LoginService" data-compartment="1">-router: Router</text>
+<text x="0.0" y="111.3" stroke="none" data-name="LoginService" data-compartment="1">-platformId: Object</text>
+
+</g>
+</g>
+<g transform="translate(7273, 161)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="LoginService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="LoginService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="LoginService" data-compartment="2">-checkAuthStatus(): void</text>
+<text x="0.0" y="30.3" stroke="none" data-name="LoginService" data-compartment="2">+login(): Observable&lt;any&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="LoginService" data-compartment="2">+setToken(): void</text>
+<text x="0.0" y="62.7" stroke="none" data-name="LoginService" data-compartment="2">+getToken(): string</text>
+<text x="0.0" y="78.9" stroke="none" data-name="LoginService" data-compartment="2">+isAuthenticated(): boolean</text>
+<text x="0.0" y="95.1" stroke="none" data-name="LoginService" data-compartment="2">-clearToken(): void</text>
+<text x="0.0" y="111.3" stroke="none" data-name="LoginService" data-compartment="2">+logout(): void</text>
+<text x="0.0" y="127.5" stroke="none" data-name="LoginService" data-compartment="2">+clearStoredToken(): void</text>
+<text x="0.0" y="143.7" stroke="none" data-name="LoginService" data-compartment="2">+hasToken(): boolean</text>
+<text x="0.0" y="159.9" stroke="none" data-name="LoginService" data-compartment="2">+getUserInfo(): any</text>
+
+</g>
+</g>
+</g>
+<g data-name="MaterialService">
+<g fill="#eee8d5" stroke="#33322E" data-name="MaterialService">
+<rect x="7739.0" y="89.0" height="161.0" width="330.0" data-name="MaterialService"></rect>
+<path d="M7739.0 121.0 L8069.0 121.0" fill="none" data-name="MaterialService"></path>
+<path d="M7739.0 153.0 L8069.0 153.0" fill="none" data-name="MaterialService"></path>
+</g>
+<g transform="translate(7739, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MaterialService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MaterialService" data-compartment="0">
+<a id="src\app\service\material\material.service.ts.MaterialService" xlink:href="src\app\service\material\material.service.ts"><text x="157.0" y="14.1" stroke="none" text-anchor="middle" data-name="MaterialService" data-compartment="0">MaterialService</text></a>
+
+</g>
+</g>
+<g transform="translate(7739, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MaterialService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MaterialService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(7739, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MaterialService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MaterialService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="MaterialService" data-compartment="2">+getAll(): Observable&lt;MaterialModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MaterialService" data-compartment="2">+getById(): Observable&lt;MaterialModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MaterialService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MaterialService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MaterialService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="MetodoPagoService">
+<g fill="#eee8d5" stroke="#33322E" data-name="MetodoPagoService">
+<rect x="8109.0" y="89.0" height="161.0" width="367.0" data-name="MetodoPagoService"></rect>
+<path d="M8109.0 121.0 L8476.0 121.0" fill="none" data-name="MetodoPagoService"></path>
+<path d="M8109.0 153.0 L8476.0 153.0" fill="none" data-name="MetodoPagoService"></path>
+</g>
+<g transform="translate(8109, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="MetodoPagoService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="MetodoPagoService" data-compartment="0">
+<a id="src\app\service\metodo_pago\metodo-pago.service.ts.MetodoPagoService" xlink:href="src\app\service\metodo_pago\metodo-pago.service.ts"><text x="175.5" y="14.1" stroke="none" text-anchor="middle" data-name="MetodoPagoService" data-compartment="0">MetodoPagoService</text></a>
+
+</g>
+</g>
+<g transform="translate(8109, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetodoPagoService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="MetodoPagoService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(8109, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="MetodoPagoService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="MetodoPagoService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="MetodoPagoService" data-compartment="2">+getAll(): Observable&lt;MetodoPagoModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="MetodoPagoService" data-compartment="2">+getById(): Observable&lt;MetodoPagoModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="MetodoPagoService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="MetodoPagoService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="MetodoPagoService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProductoService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProductoService">
+<rect x="8516.0" y="89.0" height="161.0" width="338.0" data-name="ProductoService"></rect>
+<path d="M8516.0 121.0 L8854.0 121.0" fill="none" data-name="ProductoService"></path>
+<path d="M8516.0 153.0 L8854.0 153.0" fill="none" data-name="ProductoService"></path>
+</g>
+<g transform="translate(8516, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProductoService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProductoService" data-compartment="0">
+<a id="src\app\service\producto\producto.service.ts.ProductoService" xlink:href="src\app\service\producto\producto.service.ts"><text x="161.0" y="14.1" stroke="none" text-anchor="middle" data-name="ProductoService" data-compartment="0">ProductoService</text></a>
+
+</g>
+</g>
+<g transform="translate(8516, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProductoService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProductoService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(8516, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProductoService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProductoService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ProductoService" data-compartment="2">+getAll(): Observable&lt;ProductoModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProductoService" data-compartment="2">+getById(): Observable&lt;ProductoModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProductoService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProductoService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProductoService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="ProveedorService">
+<g fill="#eee8d5" stroke="#33322E" data-name="ProveedorService">
+<rect x="8894.0" y="89.0" height="161.0" width="349.0" data-name="ProveedorService"></rect>
+<path d="M8894.0 121.0 L9243.0 121.0" fill="none" data-name="ProveedorService"></path>
+<path d="M8894.0 153.0 L9243.0 153.0" fill="none" data-name="ProveedorService"></path>
+</g>
+<g transform="translate(8894, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="ProveedorService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="ProveedorService" data-compartment="0">
+<a id="src\app\service\proveedor\proveedor.service.ts.ProveedorService" xlink:href="src\app\service\proveedor\proveedor.service.ts"><text x="166.5" y="14.1" stroke="none" text-anchor="middle" data-name="ProveedorService" data-compartment="0">ProveedorService</text></a>
+
+</g>
+</g>
+<g transform="translate(8894, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProveedorService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="ProveedorService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(8894, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="ProveedorService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="ProveedorService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="ProveedorService" data-compartment="2">+getAll(): Observable&lt;ProveedorModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="ProveedorService" data-compartment="2">+getById(): Observable&lt;ProveedorModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="ProveedorService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="ProveedorService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="ProveedorService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="RoleService">
+<g fill="#eee8d5" stroke="#33322E" data-name="RoleService">
+<rect x="9283.0" y="89.0" height="161.0" width="339.0" data-name="RoleService"></rect>
+<path d="M9283.0 121.0 L9622.0 121.0" fill="none" data-name="RoleService"></path>
+<path d="M9283.0 153.0 L9622.0 153.0" fill="none" data-name="RoleService"></path>
+</g>
+<g transform="translate(9283, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="RoleService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="RoleService" data-compartment="0">
+<a id="src\app\service\role\role.service.ts.RoleService" xlink:href="src\app\service\role\role.service.ts"><text x="161.5" y="14.1" stroke="none" text-anchor="middle" data-name="RoleService" data-compartment="0">RoleService</text></a>
+
+</g>
+</g>
+<g transform="translate(9283, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RoleService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="RoleService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(9283, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="RoleService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="RoleService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="RoleService" data-compartment="2">+getUsuario(): Observable&lt;RoleModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="RoleService" data-compartment="2">+getRoleById(): Observable&lt;RoleModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="RoleService" data-compartment="2">+saveUsuario(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="RoleService" data-compartment="2">+updateUsuario(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="RoleService" data-compartment="2">+deleteUsuario(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="TipoProductoService">
+<g fill="#eee8d5" stroke="#33322E" data-name="TipoProductoService">
+<rect x="9662.0" y="89.0" height="161.0" width="366.0" data-name="TipoProductoService"></rect>
+<path d="M9662.0 121.0 L10028.0 121.0" fill="none" data-name="TipoProductoService"></path>
+<path d="M9662.0 153.0 L10028.0 153.0" fill="none" data-name="TipoProductoService"></path>
+</g>
+<g transform="translate(9662, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="TipoProductoService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="TipoProductoService" data-compartment="0">
+<a id="src\app\service\tipo_producto\tipo-producto.service.ts.TipoProductoService" xlink:href="src\app\service\tipo_producto\tipo-producto.service.ts"><text x="175.0" y="14.1" stroke="none" text-anchor="middle" data-name="TipoProductoService" data-compartment="0">TipoProductoService</text></a>
+
+</g>
+</g>
+<g transform="translate(9662, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="TipoProductoService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="TipoProductoService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="TipoProductoService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(9662, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="TipoProductoService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="TipoProductoService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="TipoProductoService" data-compartment="2">+getAll(): Observable&lt;tipoproductoModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="TipoProductoService" data-compartment="2">+getById(): Observable&lt;tipoproductoModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="TipoProductoService" data-compartment="2">+save(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="TipoProductoService" data-compartment="2">+update(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="TipoProductoService" data-compartment="2">+delete(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="UsuarioService">
+<g fill="#eee8d5" stroke="#33322E" data-name="UsuarioService">
+<rect x="10068.0" y="89.0" height="161.0" width="389.0" data-name="UsuarioService"></rect>
+<path d="M10068.0 121.0 L10457.0 121.0" fill="none" data-name="UsuarioService"></path>
+<path d="M10068.0 153.0 L10457.0 153.0" fill="none" data-name="UsuarioService"></path>
+</g>
+<g transform="translate(10068, 89)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="UsuarioService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="UsuarioService" data-compartment="0">
+<a id="src\app\service\usuario\usuario.service.ts.UsuarioService" xlink:href="src\app\service\usuario\usuario.service.ts"><text x="186.5" y="14.1" stroke="none" text-anchor="middle" data-name="UsuarioService" data-compartment="0">UsuarioService</text></a>
+
+</g>
+</g>
+<g transform="translate(10068, 121)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UsuarioService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="UsuarioService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(10068, 153)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="UsuarioService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="UsuarioService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="UsuarioService" data-compartment="2">+getUsuario(): Observable&lt;UsuarioModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="UsuarioService" data-compartment="2">+getUsuarioById(): Observable&lt;UsuarioModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="UsuarioService" data-compartment="2">+saveUsuario(): Observable&lt;any&gt;</text>
+<text x="0.0" y="62.7" stroke="none" data-name="UsuarioService" data-compartment="2">+updateUsuario(): Observable&lt;any&gt;</text>
+<text x="0.0" y="78.9" stroke="none" data-name="UsuarioService" data-compartment="2">+deleteUsuario(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+<g data-name="VentaService">
+<g fill="#eee8d5" stroke="#33322E" data-name="VentaService">
+<rect x="10497.0" y="105.0" height="129.0" width="374.0" data-name="VentaService"></rect>
+<path d="M10497.0 137.0 L10871.0 137.0" fill="none" data-name="VentaService"></path>
+<path d="M10497.0 169.0 L10871.0 169.0" fill="none" data-name="VentaService"></path>
+</g>
+<g transform="translate(10497, 105)" font-family="Helvetica" font-size="12pt" font-weight="bold" font-style="normal" data-name="VentaService" data-compartment="0">
+<g transform="translate(8, 8)" fill="#33322E" text-align="center" data-name="VentaService" data-compartment="0">
+<a id="src\app\service\venta\venta.service.ts.VentaService" xlink:href="src\app\service\venta\venta.service.ts"><text x="179.0" y="14.1" stroke="none" text-anchor="middle" data-name="VentaService" data-compartment="0">VentaService</text></a>
+
+</g>
+</g>
+<g transform="translate(10497, 137)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaService" data-compartment="1">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="VentaService" data-compartment="1">
+<text x="0.0" y="14.1" stroke="none" data-name="VentaService" data-compartment="1">-httpClient: HttpClient</text>
+
+</g>
+</g>
+<g transform="translate(10497, 169)" font-family="Helvetica" font-size="12pt" font-weight="normal" font-style="normal" data-name="VentaService" data-compartment="2">
+<g transform="translate(8, 8)" fill="#33322E" text-align="left" data-name="VentaService" data-compartment="2">
+<text x="0.0" y="14.1" stroke="none" data-name="VentaService" data-compartment="2">+getUsuario(): Observable&lt;VentaModel[]&gt;</text>
+<text x="0.0" y="30.3" stroke="none" data-name="VentaService" data-compartment="2">+getUsuarioById(): Observable&lt;VentaModel&gt;</text>
+<text x="0.0" y="46.5" stroke="none" data-name="VentaService" data-compartment="2">+saveUsuario(): Observable&lt;any&gt;</text>
+
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+</svg>
