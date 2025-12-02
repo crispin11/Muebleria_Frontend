@@ -14,8 +14,8 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
   if (token) {
     clonedReq = req.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
   }
 
@@ -23,18 +23,14 @@ export const customInterceptor: HttpInterceptorFn = (req, next) => {
   return next(clonedReq).pipe(
     catchError((error: HttpErrorResponse) => {
       if (error.status === 401 || error.status === 403) {
-        // Token expirado o inválido
-        console.error('Error de autenticación:', error.error?.message || 'No autorizado');
-        
-        // Limpiar sesión y redirigir al login
-        loginService.logout();
-        
+        // Limpiar sesión y redirigir al logi
+
         // Mostrar mensaje al usuario
         if (error.error?.message) {
-          alert(error.error.message);
+          window.alert(error.error.message);
         }
       }
-      
+
       return throwError(() => error);
     })
   );

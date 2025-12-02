@@ -10,32 +10,29 @@ import { MenuComponent } from './components/menu/menu.component';
   selector: 'app-root',
   standalone: true,
   imports: [
-    CommonModule,      // ✅ Para *ngIf, *ngFor, etc.
-    RouterModule,      // ✅ Para <router-outlet>
-    MenuComponent      // ✅ Importar MenuComponent
+    CommonModule, // ✅ Para *ngIf, *ngFor, etc.
+    RouterModule, // ✅ Para <router-outlet>
+    MenuComponent, // ✅ Importar MenuComponent
   ],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   private authSubscription?: Subscription;
   private routesWithoutMenu = ['/login', '/registro', '/forgot-password'];
 
-  constructor(
-    private router: Router,
-    private loginService: LoginService
-  ) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit() {
     this.authSubscription = this.loginService.isAuthenticated$.subscribe(
-      isAuth => {
+      (isAuth) => {
         this.isAuthenticated = isAuth;
       }
     );
 
     this.router.events
-      .pipe(filter(event => event instanceof NavigationEnd))
+      .pipe(filter((event) => event instanceof NavigationEnd))
       .subscribe((event: any) => {
         this.checkRouteForMenu(event.url);
       });
@@ -48,7 +45,9 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   checkRouteForMenu(url: string) {
-    const shouldHideMenu = this.routesWithoutMenu.some(route => url.includes(route));
+    const shouldHideMenu = this.routesWithoutMenu.some((route) =>
+      url.includes(route)
+    );
     if (shouldHideMenu) {
       this.isAuthenticated = false;
     } else {

@@ -204,10 +204,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
           console.log('Roles cargados:', this.listRoles.length);
         }
       },
-      error: (err) => {
-        console.error('Error al cargar roles:', err);
-        alert('Error al cargar la lista de roles');
-      },
+      error: (err) => {},
     });
   }
 
@@ -215,8 +212,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
     if (!this.isBrowser) return;
 
     try {
-      console.log('Destruyendo DataTable...');
-
       if (this.dataTable) {
         this.dataTable.destroy();
         this.dataTable = null;
@@ -228,9 +223,7 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
         $('#usuarioTable').DataTable().destroy();
         console.log('DataTable destruido via jQuery');
       }
-    } catch (error) {
-      console.warn('Error al destruir DataTable:', error);
-    }
+    } catch (error) {}
   }
 
   initDataTable() {
@@ -344,8 +337,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   recargarTabla() {
-    console.log('Recargando datos de la tabla...');
-
     this.usuarioService.getUsuario().subscribe({
       next: (resp) => {
         if (resp) {
@@ -377,13 +368,10 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   list() {
-    console.log('Cargando lista inicial de usuarios...');
-
     this.usuarioService.getUsuario().subscribe({
       next: (resp) => {
         if (resp) {
           this.listUsuario = resp;
-          console.log('Usuarios cargados:', this.listUsuario.length);
 
           this.cdr.detectChanges();
 
@@ -399,7 +387,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
         }
       },
       error: (err) => {
-        console.error('Error al obtener usuarios:', err);
         alert('Error al cargar usuarios');
       },
     });
@@ -431,8 +418,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
 
   save() {
     if (this.formUsuario.valid) {
-      console.log('Guardando usuario...');
-
       this.usuarioService.saveUsuario(this.formUsuario.value).subscribe({
         next: (resp) => {
           console.log('Usuario guardado exitosamente');
@@ -444,7 +429,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
           }, 400);
         },
         error: (err) => {
-          console.error('Error al guardar:', err);
           alert('Error al guardar el usuario');
         },
       });
@@ -456,8 +440,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
 
   update() {
     if (this.formUsuario.valid) {
-      console.log('Actualizando usuario...');
-
       this.usuarioService.updateUsuario(this.formUsuario.value).subscribe({
         next: (resp) => {
           console.log('Usuario actualizado exitosamente');
@@ -469,7 +451,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
           }, 400);
         },
         error: (err) => {
-          console.error('Error al actualizar:', err);
           alert('Error al actualizar el usuario');
         },
       });
@@ -491,7 +472,6 @@ export class UsuarioComponent implements OnInit, AfterViewInit, OnDestroy {
           }, 200);
         },
         error: (err) => {
-          console.error('Error al eliminar:', err);
           alert('Error al eliminar el usuario');
         },
       });

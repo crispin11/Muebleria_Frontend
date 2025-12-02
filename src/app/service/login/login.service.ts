@@ -38,7 +38,6 @@ export class LoginService {
 
     // Si el token está expirado, hacer logout
     if (!isAuth && this.getToken()) {
-      console.log('Token expirado detectado en inicio');
       this.clearToken();
     }
   }
@@ -50,14 +49,11 @@ export class LoginService {
         if (response && response.token) {
           this.saveToken(response.token);
           this.isAuthenticatedSubject.next(true);
-          console.log('Login exitoso, token guardado');
         } else {
-          console.warn('No se recibió token del servidor');
           this.isAuthenticatedSubject.next(false);
         }
       }),
       catchError((error) => {
-        console.error('Error de login:', error);
         this.isAuthenticatedSubject.next(false);
         return throwError(() => error);
       })
@@ -76,7 +72,6 @@ export class LoginService {
 
       // Verificar si el token está expirado
       if (token && this.isTokenExpired(token)) {
-        console.log('Token expirado, limpiando...');
         this.clearToken();
         return null;
       }
@@ -99,7 +94,6 @@ export class LoginService {
       const now = Math.floor(Date.now() / 1000);
       return expiry < now;
     } catch (e) {
-      console.error('Error al decodificar token:', e);
       return true;
     }
   }
@@ -125,7 +119,6 @@ export class LoginService {
   }
 
   logout(): void {
-    console.log('Cerrando sesión...');
     this.clearToken();
     this.isAuthenticatedSubject.next(false);
     this.router.navigate(['/login']);
@@ -143,7 +136,6 @@ export class LoginService {
         exp: payload.exp,
       };
     } catch (e) {
-      console.error('Error al extraer información del token:', e);
       return null;
     }
   }
