@@ -8,11 +8,11 @@ import { LoginService } from '../../service/login/login.service';
   selector: 'app-login',
   standalone: true,
   imports: [
-    CommonModule,   // ✅ Para *ngIf
-    FormsModule     // ✅ Para [(ngModel)]
+    CommonModule, // ✅ Para *ngIf
+    FormsModule, // ✅ Para [(ngModel)]
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   correo: string = '';
@@ -20,10 +20,7 @@ export class LoginComponent {
   loading: boolean = false;
   errorMessage: string = '';
 
-  constructor(
-    private router: Router,
-    private loginService: LoginService
-  ) {}
+  constructor(private router: Router, private loginService: LoginService) {}
 
   login() {
     if (!this.correo || !this.password) {
@@ -43,15 +40,7 @@ export class LoginComponent {
       error: (error) => {
         this.loading = false;
         console.error('Error de login:', error);
-        
-        if (error.status === 401) {
-          this.errorMessage = 'Credenciales incorrectas';
-        } else if (error.status === 0) {
-          this.errorMessage = 'No se puede conectar con el servidor';
-        } else {
-          this.errorMessage = error.error?.message || 'Error en el servidor. Intenta más tarde.';
-        }
-      }
+      },
     });
   }
 }

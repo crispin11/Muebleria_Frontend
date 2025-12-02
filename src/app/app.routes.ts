@@ -16,6 +16,7 @@ import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'Producto', component: ProductoComponent },
   { path: 'tipo-producto', component: TipoProductoComponent },
