@@ -1,4 +1,3 @@
-
 <!-- Topbar (móvil) -->
 <div class="topbar">
   <button class="hamburger" (click)="toggleSidebar()">
@@ -92,12 +91,6 @@
           </a>
         </li>
         <li class="submenu-item">
-          <a class="submenu-link" [routerLink]="['/detalle-venta']" (click)="closeSidebarOnMobile()">
-            <i class="fas fa-circle"></i>
-            Detalle Ventas
-          </a>
-        </li>
-        <li class="submenu-item">
           <a class="submenu-link" [routerLink]="['/cliente']" (click)="closeSidebarOnMobile()">
             <i class="fas fa-circle"></i>
             Cliente
@@ -126,12 +119,7 @@
             Compra
           </a>
         </li>
-        <li class="submenu-item">
-          <a class="submenu-link" [routerLink]="['/detalle-compra']" (click)="closeSidebarOnMobile()">
-            <i class="fas fa-circle"></i>
-            Detalle Compras
-          </a>
-        </li>
+
         <li class="submenu-item">
           <a class="submenu-link" [routerLink]="['/proveedor']" (click)="closeSidebarOnMobile()">
             <i class="fas fa-circle"></i>
@@ -141,28 +129,7 @@
       </ul>
     </li>
 
-    <!-- Administración -->
-    <li class="menu-item">
-      <a class="menu-link" (click)="toggleSubmenu('admin')">
-        <i class="fas fa-cog"></i>
-        <span>Administración</span>
-        <i class="fas fa-chevron-down menu-arrow" [class.rotate]="activeMenus['admin']"></i>
-      </a>
-      <ul class="submenu" [class.show]="activeMenus['admin']">
-        <li class="submenu-item">
-          <a class="submenu-link" [routerLink]="['/Kardex']" (click)="closeSidebarOnMobile()">
-            <i class="fas fa-circle"></i>
-            Kardex
-          </a>
-        </li>
-        <li class="submenu-item">
-          <a class="submenu-link" [routerLink]="['/dashboard']" (click)="closeSidebarOnMobile()">
-            <i class="fas fa-circle"></i>
-            Dashboard
-          </a>
-        </li>
-      </ul>
-    </li>
+
   </ul>
 </nav>
 
