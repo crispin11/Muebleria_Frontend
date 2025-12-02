@@ -44,7 +44,7 @@ interface CompraCompletaResponse {
   providedIn: 'root',
 })
 export class CompraService {
-  private apiUrl = 'http://localhost:8080/api/compra';
+  private apiUrl = 'https://muebleriaapis-production.up.railway.app/api/compra';
 
   constructor(private http: HttpClient) {}
 

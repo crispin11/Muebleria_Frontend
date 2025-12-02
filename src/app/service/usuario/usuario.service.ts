@@ -4,25 +4,39 @@ import { map, Observable } from 'rxjs';
 import { UsuarioModel } from '../../model/usuario-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuarioService {
+  private baseUrl =
+    'https://muebleriaapis-production.up.railway.app/api/usuario';
 
-  constructor(private httpClient:HttpClient) { }
-  
-  getUsuario():Observable<UsuarioModel[]>{
-    return this.httpClient.get<UsuarioModel[]>('http://localhost:8080/api/usuario'+'/ver').pipe(map(res=>res))
+  constructor(private httpClient: HttpClient) {}
+
+  getUsuario(): Observable<UsuarioModel[]> {
+    return this.httpClient
+      .get<UsuarioModel[]>(`${this.baseUrl}/ver`)
+      .pipe(map((res) => res));
   }
+
   getUsuarioById(id: number): Observable<UsuarioModel> {
-    return this.httpClient.get<UsuarioModel>('http://localhost:8080/api/usuario'+`/buscarid/${id}`);
+    return this.httpClient.get<UsuarioModel>(`${this.baseUrl}/buscarid/${id}`);
   }
-  saveUsuario(request:any):Observable<any>{
-    return this.httpClient.post<any>('http://localhost:8080/api/usuario'+'/agregar',request).pipe(map(res=>res))
+
+  saveUsuario(request: any): Observable<any> {
+    return this.httpClient
+      .post<any>(`${this.baseUrl}/agregar`, request)
+      .pipe(map((res) => res));
   }
-  updateUsuario(request:any):Observable<any>{
-    return this.httpClient.post<any>('http://localhost:8080/api/usuario'+'/modificar',request).pipe(map(res=>res))
+
+  updateUsuario(request: any): Observable<any> {
+    return this.httpClient
+      .post<any>(`${this.baseUrl}/modificar`, request)
+      .pipe(map((res) => res));
   }
-  deleteUsuario(id:number):Observable<any>{
-    return this.httpClient.get<any>('http://localhost:8080/api/usuario'+`/eliminar/${id}`).pipe(map(res=>res))
+
+  deleteUsuario(id: number): Observable<any> {
+    return this.httpClient
+      .get<any>(`${this.baseUrl}/eliminar/${id}`)
+      .pipe(map((res) => res));
   }
 }

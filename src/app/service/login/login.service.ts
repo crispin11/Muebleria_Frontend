@@ -15,7 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root',
 })
 export class LoginService {
-  private API_URL = 'http://localhost:8080/api/login';
+  private API_URL = 'https://muebleriaapis-production.up.railway.app/api/login';
   private tokenKey = 'authToken';
 
   // BehaviorSubject para manejar el estado de autenticación
@@ -59,7 +59,7 @@ export class LoginService {
       catchError((error) => {
         console.error('Error de login:', error);
         this.isAuthenticatedSubject.next(false);
-        return throwError(() => error); // Propagar el error en lugar de retornar null
+        return throwError(() => error);
       })
     );
   }
@@ -92,7 +92,6 @@ export class LoginService {
     }
   }
 
-  // Verificar si el token está expirado
   private isTokenExpired(token: string): boolean {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]));
@@ -101,11 +100,10 @@ export class LoginService {
       return expiry < now;
     } catch (e) {
       console.error('Error al decodificar token:', e);
-      return true; // Si hay error, considerar expirado
+      return true;
     }
   }
 
-  // Obtener fecha de expiración del token
   public getTokenExpirationDate(): Date | null {
     const token = this.getToken();
     if (!token) return null;
@@ -116,7 +114,7 @@ export class LoginService {
         return new Date(payload.exp * 1000);
       }
       return null;
-    } catch (e) {
+    } catch {
       return null;
     }
   }
@@ -133,7 +131,6 @@ export class LoginService {
     this.router.navigate(['/login']);
   }
 
-  // Obtener información del usuario desde el token
   getUserFromToken(): any {
     const token = this.getToken();
     if (!token) return null;
